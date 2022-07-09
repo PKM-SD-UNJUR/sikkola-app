@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\latihan;
+use App\Models\kelas;
+use App\Models\mapel;
 use App\Http\Requests\StorelatihanRequest;
 use App\Http\Requests\UpdatelatihanRequest;
+use Illuminate\Http\Request;
 
 class LatihanController extends Controller
 {
@@ -13,9 +16,19 @@ class LatihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $latihan = latihan::with('kelas','mapel')->get();
+        $mapel = mapel::where('id',$request->id)->with('kelas','latihan')->get();
+        return view('dashboard-layout.latihan.index',compact('latihan','mapel'),['title'=>'latihan']);
+    }
+
+    public function kelolaLatihan() {
+        $latihan = latihan::with('kelas','mapel')->get();
+        $kelas = kelas::with('latihan','mapel')->get();
+        $mapel = mapel::with('kelas','latihan')->get();
+        return view('dashboard-layout.latihan.kelola-latihan',compact('latihan','kelas','mapel'),['title'=>'latihan']);
     }
 
     /**
@@ -23,9 +36,10 @@ class LatihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $mapel = mapel::where('id',$request->id)->with('kelas','latihan')->get();
+        return view('dashboard-layout.latihan.create', ['data' => new latihan, 'mapel' => $mapel,'title'=>'latihan']);
     }
 
     /**
@@ -34,9 +48,30 @@ class LatihanController extends Controller
      * @param  \App\Http\Requests\StorelatihanRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorelatihanRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'waktumulai' => 'required',
+            'waktuselesai' => 'required',
+            'link' => 'required',
+            'keterangan' => 'required',
+            'mapel_id' => 'required',
+            'kelas_id' => 'required'
+        ]);
+
+
+        $latihan = new latihan();
+        $latihan->judul = $request->judul;
+        $latihan->waktumulai = $request->waktumulai;
+        $latihan->waktuselesai = $request->waktuselesai;
+        $latihan->link = $request->link;
+        $latihan->keterangan = $request->keterangan;
+        $latihan->kelas_id = $request->kelas_id;
+        $latihan->mapel_id = $request->mapel_id;
+        $latihan->save();
+
+        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil dibuat');
     }
 
     /**
@@ -45,7 +80,7 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function show(latihan $latihan)
+    public function show(latihan $lth)
     {
         //
     }
@@ -56,9 +91,12 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function edit(latihan $latihan)
+    public function edit($id, Request $request)
     {
-        //
+        $latihan = latihan::find($id);
+        $mapel = mapel::where('id',$request->id)->with('kelas','latihan')->get();
+        return view('dashboard-layout.latihan.edit', compact('latihan','mapel'), ['id'=>$request->mapel_id,'title'=>'latihan']);
+
     }
 
     /**
@@ -68,9 +106,29 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatelatihanRequest $request, latihan $latihan)
+    public function update($id,Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'waktumulai' => 'required',
+            'waktuselesai' => 'required',
+            'link' => 'required',
+            'keterangan' => 'required',
+            'mapel_id' => 'required',
+            'kelas_id' => 'required'
+        ]);
+
+        $latihan = latihan::find($id);
+        $latihan->judul = $request->judul;
+        $latihan->waktumulai = $request->waktumulai;
+        $latihan->waktuselesai = $request->waktuselesai;
+        $latihan->link = $request->link;
+        $latihan->keterangan = $request->keterangan;
+        $latihan->kelas_id = $request->kelas_id;
+        $latihan->mapel_id = $request->mapel_id;
+        $latihan->save();
+
+        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil diubah');
     }
 
     /**
@@ -79,8 +137,9 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(latihan $latihan)
+    public function destroy($id, Request $request)
     {
-        //
+        latihan::find($id)->delete();
+        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil dihapus');
     }
 }

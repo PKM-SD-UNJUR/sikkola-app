@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardKelasController;
 use App\Http\Controllers\dashboardMapelController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\materiController;
 
 /*
@@ -58,3 +59,12 @@ Route::resource('/dashboard/mapel', dashboardMapelController::class);
 Route::get('/dashboard/mapel/kelas/{kela:id}',[dashboardMapelController::class,'listMapel']);
 
 Route::get('/dashboard/mapel/{kela:id}/create',[dashboardMapelController::class,'create']);
+
+
+// Latihan
+Route::get('/dashboard/latihan', [LatihanController::class, 'kelolaLatihan']);
+
+Route::prefix('dashboard/latihan')->group(function () {
+    Route::get('/', [LatihanController::class, 'kelolaLatihan'])->name('kelola-latihan');
+    Route::resource('kelola',LatihanController::class);
+});

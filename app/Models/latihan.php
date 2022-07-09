@@ -18,7 +18,7 @@ class latihan extends Model
     }
 
     public function mapel() {
-        return $this->belongsTo(mapel::class);
+        return $this->belongsTo(mapel::class,'mapel_id');
     }
 
     public function submitForm() {

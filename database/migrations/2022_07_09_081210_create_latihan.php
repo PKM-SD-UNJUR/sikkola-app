@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('latihan', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->time('waktumulai');
-            $table->time('waktuselesai');
+            $table->datetime('waktumulai');
+            $table->datetime('waktuselesai');
             $table->string('link');
             $table->text('keterangan');
 
