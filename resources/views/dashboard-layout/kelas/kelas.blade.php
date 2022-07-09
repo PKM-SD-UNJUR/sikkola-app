@@ -6,13 +6,13 @@
 <div>
     <a class="fw-bold tx-info bar-item" href="/dashboard">Kelas</a> / <span class="text-secondary">Buat kelas</span>
 </div>
-@if (session()->has('success'))
+{{-- @if (session()->has('success'))
 <br>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <i class="fas fa-check-circle"></i> {{session('success')}}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-@endif
+@endif --}}
 
 <div class="mt-5">
     <div><a class="btn btn-primary fw-bold text-uppercase" href="/dashboard/kelas/create"> + buat kelas </a></div>

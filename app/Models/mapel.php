@@ -14,4 +14,8 @@ class mapel extends Model
     public function kelas(){
         return $this->belongsTo(kelas::class);
     }
+
+    public function materi(){
+        return $this->hasMany(kelas::class);
+    }
 }

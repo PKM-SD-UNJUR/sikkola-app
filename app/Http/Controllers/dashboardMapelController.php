@@ -6,6 +6,7 @@ use App\Models\mapel;
 use App\Models\kelas;
 use Illuminate\Http\Request;
 use Storage;
+use Alert;
 
 class dashboardMapelController extends Controller
 {

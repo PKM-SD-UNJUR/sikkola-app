@@ -25,6 +25,10 @@ Route::get('/kelas/{kela:id}', [berandaController::class, 'listMapel']);
 
 Route::get('/kelas/materi/{mapel:id}/',[materiController::class,'materiList']);
 
+Route::get('/kelas/materi/{mapel:id}/create',[materiController::class,'create']);
+
+Route::post('/kelas/materi/{mapel:id}',[materiController::class,'store']);
+
 Route::get('/kelas', function () {
     return view('kelas');
 });

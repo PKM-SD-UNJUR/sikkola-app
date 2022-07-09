@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('materis', function (Blueprint $table) {
             $table->id();
+            $table->string('topik');
+            $table->string('judul');
+            $table->time('waktumulai');
+            $table->time('waktuselesai');
+            $table->string('video');
+            $table->string('file');
+            $table->foreignId('kelas_id');
+            $table->foreignId('mapel_id');
             $table->timestamps();
         });
     }
