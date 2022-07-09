@@ -29,7 +29,8 @@ class dashboardMapelController extends Controller
 
         return view('dashboard-layout.mapel.list-mapel',[
             'mapel' => $mapel,
-            'kelas' => $kela
+            'kelas' => $kela,
+            'title' => 'mapel'
         ]);
     }
 
@@ -41,7 +42,8 @@ class dashboardMapelController extends Controller
     public function create(kelas $kela)
     {
         return view('dashboard-layout.mapel.tambah-mapel',[
-            'kelas' => $kela
+            'kelas' => $kela,
+            'title' => 'mapel'
         ]);
     }
 
@@ -93,7 +95,8 @@ class dashboardMapelController extends Controller
     public function edit(mapel $mapel)
     {
         return view('dashboard-layout.mapel.edit-mapel',[
-            'mapel' => $mapel
+            'mapel' => $mapel,
+            'title' => 'mapel'
         ]);
     }
 
