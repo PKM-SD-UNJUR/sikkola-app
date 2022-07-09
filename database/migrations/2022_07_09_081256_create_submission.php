@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mapels', function (Blueprint $table) {
+        Schema::create('submission', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            // $table->foreignId('kelas_id');
-            $table->string('deskripsi');
-            $table->string('gambar');
+            $table->text('file');
 
-            $table->unsignedBigInteger('kelas_id');
-            $table->foreign('kelas_id')->references('id')->on('kelas');
-            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('submitForm_id');
+            $table->foreign('submitForm_id')->references('id')->on('submit_form');
+
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mapels');
+        Schema::dropIfExists('submission');
     }
 };

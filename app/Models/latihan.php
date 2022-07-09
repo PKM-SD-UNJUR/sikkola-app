@@ -5,23 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mapel extends Model
+class latihan extends Model
 {
     use HasFactory;
 
-    protected $table = 'mapels';
+    protected $table = 'latihan';
 
     protected $guarded = ['id'];
 
-    public function kelas(){
+    public function kelas() {
         return $this->belongsTo(kelas::class);
     }
 
-    public function materi(){
-        return $this->hasMany(materi::class);
+    public function mapel() {
+        return $this->belongsTo(mapel::class);
     }
 
-    public function latihan(){
-        return $this->hasMany(latihan::class);
+    public function submitForm() {
+        return $this->hasOne(submitForm::class);
     }
 }

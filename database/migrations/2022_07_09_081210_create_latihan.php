@@ -13,23 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('materis', function (Blueprint $table) {
+        Schema::create('latihan', function (Blueprint $table) {
             $table->id();
-            $table->string('topik');
             $table->string('judul');
             $table->time('waktumulai');
             $table->time('waktuselesai');
-            $table->string('video');
-            $table->string('file');
-            // $table->foreignId('kelas_id');
-            // $table->foreignId('mapel_id');
+            $table->string('link');
+            $table->text('keterangan');
 
             $table->unsignedBigInteger('kelas_id');
             $table->foreign('kelas_id')->references('id')->on('kelas');
 
             $table->unsignedBigInteger('mapel_id');
             $table->foreign('mapel_id')->references('id')->on('mapels');
-
+            
             $table->timestamps();
         });
     }
@@ -41,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materis');
+        Schema::dropIfExists('latihan');
     }
 };
