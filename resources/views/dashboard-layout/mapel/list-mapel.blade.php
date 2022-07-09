@@ -33,7 +33,7 @@
             <td>{{$m->deskripsi}}</td>
             <td>
                 <div class="img-display">
-                    <a href="{{asset("/storage/$m->gambar")}}"><img src="{{asset("/storage/$m->gambar")}}" alt=""></a>
+                    <a href="#"><img src="mapel/{{$m->gambar}}" alt=""></a>
                 </div>
             </td>
             <td>
