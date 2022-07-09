@@ -16,7 +16,8 @@ class dashboardKelasController extends Controller
     public function index()
     {
         return view('dashboard-layout.kelas.kelas',[
-            'kelas' => kelas::latest()->get()
+            'kelas' => kelas::latest()->get(),
+            'title' => 'kelas'
         ]);
     }
 
@@ -27,7 +28,7 @@ class dashboardKelasController extends Controller
      */
     public function create()
     {
-        return view('dashboard-layout.kelas.tambah-kelas');
+        return view('dashboard-layout.kelas.tambah-kelas',['title' => 'kelas']);
     }
 
     /**
@@ -47,7 +48,11 @@ class dashboardKelasController extends Controller
        $data = $request->validate($validasi);
 
        if($request->has('gambar')){
-            $data['gambar'] = $request->file('gambar')->store('kelas');
+            $file = $request->file('gambar');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('kelas'), $namafile);
+
+            $data['gambar'] = $namafile;
        }
 
     //    return $data['gambar'];
@@ -78,7 +83,8 @@ class dashboardKelasController extends Controller
     public function edit(kelas $kela)
     {   
        return view('dashboard-layout.kelas.edit-kelas',[
-            'kelas' => $kela
+            'kelas' => $kela,
+            'title' => 'kelas'
        ]);
     }
 

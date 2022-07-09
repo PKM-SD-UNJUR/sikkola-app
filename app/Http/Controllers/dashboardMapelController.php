@@ -18,7 +18,8 @@ class dashboardMapelController extends Controller
     public function index()
     {
         return view('dashboard-layout.mapel.mapel',[
-            'kelas' => kelas::latest()->get()
+            'kelas' => kelas::latest()->get(),
+            'title' => 'mapel'
         ]);
     }
 

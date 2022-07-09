@@ -20,7 +20,7 @@
           <div class="row g-0">
           <div class="col-md-4">
             <div class="text-center img-mapel-area">
-              <img src="{{ asset("storage/$m->gambar") }}" class="img-fluid rounded-start mt-4" alt="...">
+              <img src="kelas/{{$m->gambar}}" class="img-fluid rounded-start mt-4" alt="...">
             </div>
           </div>
           <div class="col-md-8">
