@@ -272,8 +272,8 @@
       </div>
   
       <br><br>
-        <footer class="fixed-bottom mt-4">
-          <div class="bg p-1">
+        <footer class=" mt-4">
+          <div class="bg p-1 py-3">
               <div class="d-flex mt-2">
                 <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>&nbsp;&nbsp;&nbsp;
                 <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>
