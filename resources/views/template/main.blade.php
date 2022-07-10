@@ -271,13 +271,14 @@
 
       </div>
   
-        <footer>
-          <div class="bg p-2">
-              <div class="d-flex mt-4">
+      <br><br>
+        <footer class="fixed-bottom mt-4">
+          <div class="bg p-1">
+              <div class="d-flex mt-2">
                 <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>&nbsp;&nbsp;&nbsp;
-                <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo.png')}}" width="100" alt=""></a>
+                <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>
               </div>
-            <p class="text-center text-light mt-4">Copyright &copy;2021 | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>
+            <p class="text-center text-light mt-1">Copyright &copy;2021 | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>
           </div>
         </footer>
 

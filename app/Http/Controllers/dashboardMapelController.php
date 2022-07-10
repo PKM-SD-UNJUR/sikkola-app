@@ -17,18 +17,20 @@ class dashboardMapelController extends Controller
      */
     public function index()
     {
-        return view('dashboard-layout.mapel.mapel',[
-            'kelas' => kelas::latest()->get()
+        return view('dashboard-layout.mapel.mapel', [
+            'kelas' => kelas::latest()->get(),
+            'title' => 'mapel'
         ]);
     }
 
     public function listMapel(kelas $kela)
     {
-        $mapel = mapel::where('kelas_id',$kela->id)->get();
+        $mapel = mapel::where('kelas_id', $kela->id)->get();
 
-        return view('dashboard-layout.mapel.list-mapel',[
+        return view('dashboard-layout.mapel.list-mapel', [
             'mapel' => $mapel,
-            'kelas' => $kela
+            'kelas' => $kela,
+            'title' => 'mapel'
         ]);
     }
 
@@ -39,8 +41,9 @@ class dashboardMapelController extends Controller
      */
     public function create(kelas $kela)
     {
-        return view('dashboard-layout.mapel.tambah-mapel',[
-            'kelas' => $kela
+        return view('dashboard-layout.mapel.tambah-mapel', [
+            'kelas' => $kela,
+            'title' => 'mapel'
         ]);
     }
 
@@ -57,19 +60,23 @@ class dashboardMapelController extends Controller
             'deskripsi' => 'required|max:255|min:5',
             'gambar' => 'required',
             'kelas_id' => 'required'
-           ]; 
-    
-           $data = $request->validate($validasi);
-    
-           if($request->has('gambar')){
-                $data['gambar'] = $request->file('gambar')->store('kelas');
-           }
-    
-           $kelas = $data['kelas_id'];
-    
-           mapel::create($data);
-    
-           return redirect("/dashboard/mapel/kelas/$kelas")->with('success','Mata pelajaran berhasil dibuat');
+        ];
+
+        $data = $request->validate($validasi);
+
+        if ($request->has('gambar')) {
+            $file = $request->file('gambar');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('mapel'), $namafile);
+
+            $data['gambar'] = $namafile;
+        }
+
+        $kelas = $data['kelas_id'];
+
+        mapel::create($data);
+
+        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata pelajaran berhasil dibuat');
     }
 
     /**
@@ -91,8 +98,9 @@ class dashboardMapelController extends Controller
      */
     public function edit(mapel $mapel)
     {
-        return view('dashboard-layout.mapel.edit-mapel',[
-            'mapel' => $mapel
+        return view('dashboard-layout.mapel.edit-mapel', [
+            'mapel' => $mapel,
+            'title' => 'mapel'
         ]);
     }
 
@@ -110,24 +118,28 @@ class dashboardMapelController extends Controller
             'deskripsi' => 'required|max:255|min:5',
             'gambar' => 'nullable',
             'kelas_id' => 'nullable'
-        ]; 
-    
-           $data = $request->validate($validasi);
-    
-           if($request->file('gambar')){
+        ];
 
-            if($request->oldImage){
+        $data = $request->validate($validasi);
+
+        if ($request->file('gambar')) {
+
+            if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
 
-            $data['gambar'] = $request->file('gambar')->store('kelas');
+            $file = $request->file('gambar');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('mapel'), $namafile);
+
+            $data['gambar'] = $namafile;
         }
 
-            $kelas = $data['kelas_id'];
-    
-           mapel::where('id',$mapel->id)->update($data);
-    
-           return redirect("/dashboard/mapel/kelas/$kelas")->with('success','Kelas berhasil diubah');
+        $kelas = $data['kelas_id'];
+
+        mapel::where('id', $mapel->id)->update($data);
+
+        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Kelas berhasil diubah');
     }
 
     /**
@@ -137,14 +149,14 @@ class dashboardMapelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(mapel $mapel)
-    {   
+    {
         // return request('kelas_id');
         $data = $mapel->id;
-        if($mapel->image){
+        if ($mapel->image) {
             Storage::delete($mapel->image);
         }
         $kelas = request('kelas_id');
         mapel::destroy($data);
-        return redirect("/dashboard/mapel/kelas/$kelas")->with('success','Mata pelajaran berhasil dihapus');
+        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata pelajaran berhasil dihapus');
     }
 }

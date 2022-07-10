@@ -51,6 +51,13 @@
         border: 4px solid rgb(168, 220, 250);
     }
 
+    .mapel-bar2{
+        padding: 5px;
+        margin-left: 15px;
+        border-radius: 15px;
+        border: 2px solid #1AFF21;
+    }
+
     @media only screen and (max-width: 800px) {
     .link-text {
         display: none
@@ -66,13 +73,14 @@
 <!-- Sidebar -->
 <div class="w3-sidebar w3-bar-block" style="width:20%">
     <div class="p-3 d-flex justify-content-center">
-        <a class="navbar-brand d-flex text-light" href="/"><img src="{{asset('gambar/logo.jpg')}}" width="90" alt=""></a>
+        <a class="navbar-brand d-flex text-light" href="/"><img src="{{asset('gambar/logo.jpg')}}" width="200" alt=""></a>
     </div>
    
   <div class="container link-item mt-2">
     <ul>
-        <li class="link-bar active"><a href="/dashboard/kelas" class="bar-item"><i class="fas fa-chalkboard"></i> <span class="link-text">Kelas</span> </a></li>
-        <li class="link-bar"><a href="/dashboard/mapel" class="bar-item"><i class="fas fa-book"></i> <span class="link-text">Mapel</span></a></li>
+        <li class="link-bar {{($title=='kelas')?'active':''}}"><a href="/dashboard/kelas" class="bar-item"><i class="fas fa-chalkboard"></i> <span class="link-text">Kelas</span> </a></li>
+        <li class="link-bar {{($title=='mapel')?'active':''}}"><a href="/dashboard/mapel" class="bar-item"><i class="fas fa-book"></i> <span class="link-text">Mata Pelajaran</span></a></li>
+        <li class="link-bar {{($title=='latihan')?'active':''}}"><a href="{{route('kelola-latihan')}}" class="bar-item"><i class="far fa-file-alt"></i> <span class="link-text">Latihan</span></a></li>
         <li class="link-bar"><a href="#" class="bar-item"> <span class="link-text">link</span></a></li>
     </ul>
   </div>

@@ -15,8 +15,9 @@ class dashboardKelasController extends Controller
      */
     public function index()
     {
-        return view('dashboard-layout.kelas.kelas',[
-            'kelas' => kelas::latest()->get()
+        return view('dashboard-layout.kelas.kelas', [
+            'kelas' => kelas::latest()->get(),
+            'title' => 'kelas'
         ]);
     }
 
@@ -27,7 +28,7 @@ class dashboardKelasController extends Controller
      */
     public function create()
     {
-        return view('dashboard-layout.kelas.tambah-kelas');
+        return view('dashboard-layout.kelas.tambah-kelas', ['title' => 'kelas']);
     }
 
     /**
@@ -37,25 +38,28 @@ class dashboardKelasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-       $validasi = [
-        'nama' => 'required|max:50|min:5',
-        'deskripsi' => 'required|max:255|min:5',
-        'gambar' => 'required'
-       ]; 
+    {
+        $validasi = [
+            'nama' => 'required|max:50|min:5',
+            'deskripsi' => 'required|max:255|min:5',
+            'gambar' => 'required'
+        ];
 
-       $data = $request->validate($validasi);
+        $data = $request->validate($validasi);
 
-       if($request->has('gambar')){
-            $data['gambar'] = $request->file('gambar')->store('kelas');
-       }
+        if ($request->has('gambar')) {
+            $file = $request->file('gambar');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('kelas'), $namafile);
 
-    //    return $data['gambar'];
+            $data['gambar'] = $namafile;
+        }
 
-       kelas::create($data);
+        //    return $data['gambar'];
 
-       return redirect('/dashboard/kelas')->with('success','Kelas berhasil dibuat');
+        kelas::create($data);
 
+        return redirect('/dashboard/kelas')->with('success', 'Kelas berhasil dibuat');
     }
 
     /**
@@ -76,10 +80,11 @@ class dashboardKelasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(kelas $kela)
-    {   
-       return view('dashboard-layout.kelas.edit-kelas',[
-            'kelas' => $kela
-       ]);
+    {
+        return view('dashboard-layout.kelas.edit-kelas', [
+            'kelas' => $kela,
+            'title' => 'kelas'
+        ]);
     }
 
     /**
@@ -95,22 +100,26 @@ class dashboardKelasController extends Controller
             'nama' => 'required|max:50|min:5',
             'deskripsi' => 'required|max:255|min:5',
             'gambar' => 'nullable'
-           ]; 
-    
-           $data = $request->validate($validasi);
-    
-           if($request->file('gambar')){
+        ];
 
-            if($request->oldImage){
+        $data = $request->validate($validasi);
+
+        if ($request->file('gambar')) {
+
+            if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
 
-            $data['gambar'] = $request->file('gambar')->store('kelas');
+            $file = $request->file('gambar');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('kelas'), $namafile);
+
+            $data['gambar'] = $namafile;
         }
-    
-           kelas::where('id',$kela->id)->update($data);
-    
-           return redirect('/dashboard/kelas')->with('success','Kelas berhasil diubah');
+
+        kelas::where('id', $kela->id)->update($data);
+
+        return redirect('/dashboard/kelas')->with('success', 'Kelas berhasil diubah');
     }
 
     /**
@@ -121,11 +130,11 @@ class dashboardKelasController extends Controller
      */
     public function destroy(kelas $kela)
     {
-        if($kela->image){
+        if ($kela->image) {
             Storage::delete($kela->image);
         }
 
         kelas::destroy($kela->id);
-        return redirect('/dashboard/kelas')->with('success','Kelas berhasil dihapus');
+        return redirect('/dashboard/kelas')->with('success', 'Kelas berhasil dihapus');
     }
 }

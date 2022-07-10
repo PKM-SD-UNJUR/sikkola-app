@@ -9,6 +9,8 @@ class materi extends Model
 {
     use HasFactory;
 
+    protected $table = 'materis';
+
     protected $guarded = ['id'];
 
     public function mapel(){

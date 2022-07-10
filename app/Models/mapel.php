@@ -9,10 +9,12 @@ class mapel extends Model
 {
     use HasFactory;
 
+    protected $table = 'mapels';
+
     protected $guarded = ['id'];
 
     public function kelas(){
-        return $this->belongsTo(kelas::class);
+        return $this->belongsTo(kelas::class,'kelas_id');
     }
 
     public function materi(){

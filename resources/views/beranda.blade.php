@@ -11,7 +11,7 @@
           <div class="col-md-4">
             <center>
               <div class="img-beranda-area">
-                <img src="{{asset("storage/$k->gambar")}}" class="img-fluid rounded-start" alt="...">
+                <img src="kelas/{{$k->gambar}}" class="img-fluid rounded-start" alt="...">
               </div>
           </center>
           </div>
