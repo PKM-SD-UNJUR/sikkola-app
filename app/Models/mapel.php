@@ -20,4 +20,8 @@ class mapel extends Model
     public function materi(){
         return $this->hasMany(materi::class);
     }
+
+    public function latihan(){
+        return $this->hasMany(latihan::class);
+    }
 }
