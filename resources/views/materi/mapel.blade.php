@@ -51,10 +51,13 @@
                               <h4 class="fw-bold">{{$m->topik}}</h4>
                               <h6 class="text-secondary fw-bold">{{$m->judul}}</h6>
                               <div class="mt-1">
-                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{$m->waktumulai}} - {{$m->waktuselesai}} WIB</h6>
+                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{Carbon\Carbon::parse($m->waktumulai)->format('H:i')}} - {{Carbon\Carbon::parse($m->waktuselesai)->format('H:i')}} WIB</h6>
                               </div>
                               <div class="py-2 d-flex justify-content-start">
+                                @if ($m->vidio != null)
                                 <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#video{{ $m->id }}"><i class="fab fa-youtube"></i> video</button>&nbsp;&nbsp;
+                                @endif
+                                
 
                                 {{--modal video--}}
                                   <div class="modal fade" id="video{{ $m->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,11 +77,12 @@
                                     </div>
                                 </div>
                                 {{--modal video end--}}
-
-                                <a class="btn btn-outline-info btn-sm" href="{{asset("storage/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
+                                @if ($m->file != null)
+                                  <a class="btn btn-outline-info btn-sm" href="{{asset("storage/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
+                                @endif
                               </div>
+                              @if ($m->deskripsi != null)
                               <div class="mt-2">
-                                
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                   <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
@@ -94,6 +98,7 @@
                                   </div>
                                 </div>
                               </div>
+                              @endif
                             </div>
                           </div>
                         </div>

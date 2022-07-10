@@ -161,7 +161,7 @@
           .pin-icon{
             max-width: 30px;
             position: absolute;
-            margin-left: 5%;
+            margin-left: 6%;
             margin-top: 70px;
           }
 
