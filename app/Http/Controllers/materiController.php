@@ -163,7 +163,7 @@ class materiController extends Controller
         $mapel = mapel::where("id",$id)->first();
 
         $data = $request->validate($validasi);
-        return $request->oldFile;
+        // return $request->oldFile;
         if($request->has('file')){
 
             if($request->oldFile){

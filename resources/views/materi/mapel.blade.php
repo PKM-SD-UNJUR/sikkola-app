@@ -54,7 +54,7 @@
                                 <h6 class="tx-info"><i class="fas fa-clock"></i> {{Carbon\Carbon::parse($m->waktumulai)->format('H:i')}} - {{Carbon\Carbon::parse($m->waktuselesai)->format('H:i')}} WIB</h6>
                               </div>
                               <div class="py-2 d-flex justify-content-start">
-                                @if ($m->vidio != null)
+                                @if ($m->video != null)
                                 <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#video{{ $m->id }}"><i class="fab fa-youtube"></i> video</button>&nbsp;&nbsp;
                                 @endif
                                 

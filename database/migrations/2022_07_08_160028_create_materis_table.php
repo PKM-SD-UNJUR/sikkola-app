@@ -22,6 +22,7 @@ return new class extends Migration
             $table->time('waktuselesai');
             $table->string('video');
             $table->string('file');
+            $table->text('deskripsi');
             // $table->foreignId('kelas_id');
             // $table->foreignId('mapel_id');
 
