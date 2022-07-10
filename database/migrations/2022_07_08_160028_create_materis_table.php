@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('topik');
             $table->string('judul');
+            $table->string('tanggal');
             $table->time('waktumulai');
             $table->time('waktuselesai');
-            $table->string('video');
-            $table->string('file');
+            $table->string('video')->nullable();
+            $table->string('file')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->foreignId('kelas_id');
             $table->foreignId('mapel_id');
             $table->timestamps();

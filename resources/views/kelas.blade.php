@@ -28,7 +28,7 @@
               <h5 class="card-title" style="color: #2874A6 ;"><i class="fas fa-book-reader"></i>&nbsp; {{$m->nama}}</h5>
               <small class="text-muted caption" style="margin-top: -5px;">{{$m->deskripsi}}
               </small><br><br>
-              <a href="/kelas/materi/{{$m->id}}" style="color: #EC7063;" class="materi-link fw-bold">Lihat Materi <i class="fas fa-hand-point-right"></i></a>
+              <a href="/kelas/materi/{{$m->id}}/{{\Carbon\Carbon::now()->format('m')}}" style="color: #EC7063;" class="materi-link fw-bold">Lihat Materi <i class="fas fa-hand-point-right"></i></a>
               {{-- <a href="/detail">lihat pelajaran</a> --}}
             </div>
           </div>
@@ -38,7 +38,7 @@
           @else
           <div class="py-4">
             <h1 class="text-center fw-bold text-secondary">
-              Kelas ini belum memiliki mata pelajaran
+              &#128012; Kelas ini belum memiliki mata pelajaran
             </h1>
           </div>
           @endif

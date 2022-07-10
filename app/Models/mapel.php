@@ -16,6 +16,6 @@ class mapel extends Model
     }
 
     public function materi(){
-        return $this->hasMany(kelas::class);
+        return $this->hasMany(materi::class);
     }
 }

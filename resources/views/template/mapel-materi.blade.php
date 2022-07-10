@@ -41,6 +41,7 @@
   <div class="container">
   {{-- <a class="btn btn-sm btnkelas bg-transparent text-light" href="{{ route('kelas1') }}"><- Kembali</a> --}}
   {{-- @if (auth()->user()->level=="guru") --}}
+  <a href="/kelas/{{$mapel->id}}/" class="btn btn-sm btnkelas bg-transparent text-light">kembali</a>
   <a class="btn btn-sm btnkelas bg-transparent text-light" href="/kelas/materi/{{$mapel->id}}/create">+ Tambah Materi</a>
   {{-- @endif --}}
   <button class="btn btn-sm btnkelas bg-transparent text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">? Cari Materi</button>

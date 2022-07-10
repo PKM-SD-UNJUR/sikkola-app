@@ -23,11 +23,19 @@ Route::get('/kelas/{kela:id}', [berandaController::class, 'listMapel']);
 
 Route::get('/kelas/{kela:id}', [berandaController::class, 'listMapel']);
 
-Route::get('/kelas/materi/{mapel:id}/',[materiController::class,'materiList']);
+// Route::get('/kelas/materi/{mapel:id}/',[materiController::class,'materiList']);
 
 Route::get('/kelas/materi/{mapel:id}/create',[materiController::class,'create']);
 
+Route::get('/kelas/materi/{id}/{materi:id}/edit',[materiController::class,'edit']);
+
+Route::post('/kelas/materi/{id}/{materi:id}/update',[materiController::class,'update']);
+
+Route::get('/kelas/materi/{id}/{materi:id}/delete',[materiController::class,'destroy']);
+
 Route::post('/kelas/materi/{mapel:id}',[materiController::class,'store']);
+
+Route::get('/kelas/materi/{mapel:id}/{tgl}',[materiController::class,'materiList']);
 
 Route::get('/kelas', function () {
     return view('kelas');

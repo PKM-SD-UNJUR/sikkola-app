@@ -20,117 +20,138 @@
         {{-- Bulan     --}}
             <div class="col-12 container mb-2">
               <div class="list-group list-group-horizontal-md" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#januari" role="tab" aria-controls="list-home">Januari</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#februari" role="tab" aria-controls="list-profile">Februari</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#maret" role="tab" aria-controls="list-messages">Maret</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#april" role="tab" aria-controls="list-settings">April</a>
-                <a class="list-group-item list-group-item-action" id="list-home-list" data-bs-toggle="list" href="#mei" role="tab" aria-controls="list-home">Mei</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#juni" role="tab" aria-controls="list-profile">Juni</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#juli" role="tab" aria-controls="list-messages">July</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#agustus" role="tab" aria-controls="list-settings">Agustus</a>
-                <a class="list-group-item list-group-item-action" id="list-home-list" data-bs-toggle="list" href="#september" role="tab" aria-controls="list-home">September</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#oktober" role="tab" aria-controls="list-profile">Oktober</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#november" role="tab" aria-controls="list-messages">November</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#desember" role="tab" aria-controls="list-settings">Desember</a>
+                <a class="list-group-item list-group-item-action @if($tg == "01") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "01"}}" role="tab" aria-controls="list-home">Januari</a>
+                <a class="list-group-item list-group-item-action @if($tg == "02") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "02"}}" role="tab" aria-controls="list-profile">Februari</a>
+                <a class="list-group-item list-group-item-action @if($tg == "03") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "03"}}" role="tab" aria-controls="list-messages">Maret</a>
+                <a class="list-group-item list-group-item-action @if($tg == "04") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "04"}}" role="tab" aria-controls="list-settings">April</a>
+                <a class="list-group-item list-group-item-action @if($tg == "05") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "05"}}" role="tab" aria-controls="list-home">Mei</a>
+                <a class="list-group-item list-group-item-action @if($tg == "06") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "06"}}" role="tab" aria-controls="list-profile">Juni</a>
+                <a class="list-group-item list-group-item-action @if($tg == "07") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "07"}}" role="tab" aria-controls="list-messages">July</a>
+                <a class="list-group-item list-group-item-action @if($tg == "08") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "08"}}" role="tab" aria-controls="list-settings">Agustus</a>
+                <a class="list-group-item list-group-item-action @if($tg == "09") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "09"}}" role="tab" aria-controls="list-home">September</a>
+                <a class="list-group-item list-group-item-action @if($tg == "10") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "10"}}" role="tab" aria-controls="list-profile">Oktober</a>
+                <a class="list-group-item list-group-item-action @if($tg == "11") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "11"}}" role="tab" aria-controls="list-messages">November</a>
+                <a class="list-group-item list-group-item-action @if($tg == "12") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "12"}}" role="tab" aria-controls="list-settings">Desember</a>
               </div>
             </div>
             <div class="container">
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="januari" role="tabpanel" aria-labelledby="list-profile-list">
-                  {{-- @foreach ($data as $item)
-                  @if(\Carbon\Carbon::parse($item->tanggal)->format('F')=='January') --}}
-                    <div class="card activitycard">
-                        <div class="card-header d-flex">
-                            {{-- <h5>{{ $item->hari }}, {{ $item->tanggal }}</h5> --}}
-                            <div class="ms-auto" style="float: right;">
-                              {{-- @if (auth()->user()->level=="guru")
-                              <a href="/kelas1/ips/ubah/{{ $item->id }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                              <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#delete{{$item->id}}"><i class="fas fa-trash-alt"></i> Delete</a>
-                              @endif --}}
-                                {{-- Konfirmasi hapus materi modals --}}
-                                <!-- Modal -->
-                                  {{-- <div class="modal fade" id="delete{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content modalhapus" style="background-color: white;">
-                                        <div class="modal-body">
-                                          <h1 class="text-center text-warning warning"><i class="fas fa-exclamation-triangle"></i></h1>
-                                          <h2 class="text-center">Apakah kamu yakin?</h2>
-                                          <p class="text-center text-muted container">Materi yang dihapus tidak dapat dipulihkan</p>
+                  @if($materi->count() > 0)
+                  @foreach ($materi as $m)
+                  <div class="materi-card container mb-3 mt-3">
+                      <div class="row">
+                        <div class="col-md-11 card-materi-desc bg-white p-4">
+                          <div class="row"> 
+                            <div class="col-md-3 py-2" style="max-width: 60px;">
+                                <img class="img-materi-card" src="{{asset("icon/learning.png")}}" alt="">
+                              <div class="line-materi-card mt-2"></div>
+                            </div>
+                            <div class="col-md-11 mt-1">
+                              <h4 class="fw-bold">{{$m->topik}}</h4>
+                              <h6 class="text-secondary fw-bold">{{$m->judul}}</h6>
+                              <div class="mt-1">
+                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{$m->waktumulai}} - {{$m->waktuselesai}} WIB</h6>
+                              </div>
+                              <div class="py-2 d-flex justify-content-start">
+                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#video{{ $m->id }}"><i class="fab fa-youtube"></i> video</button>&nbsp;&nbsp;
+
+                                {{--modal video--}}
+                                  <div class="modal fade" id="video{{ $m->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content modalbl">
+                                        <div class="modal-header">
+                                          <img src="{{ asset('gambar/robotvideo.gif') }}" style="max-width: 60px;" alt=""> 
+                                        <h4 class="modal-title" id="exampleModalLabel">Tonton Video Yukk!</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
-                                          <a href="/kelas1/ips/hapus/{{ $item->id }}" class="btn btn-primary"><i class="fas fa-trash-alt"></i> Hapus Materi</a>
+                                        <div class="container col-12">
+                                          <x-embed url="{{$m->video}}" aspect-ratio="4:3" />
+                                          {{-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$m->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
                                         </div>
+                                        <br>
+                                    </div>
+                                    </div>
+                                </div>
+                                {{--modal video end--}}
+
+                                <a class="btn btn-outline-info btn-sm" href="{{asset("storage/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
+                              </div>
+                              <div class="mt-2">
+                                
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                  <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                      <button class="accordion-button rounded collapsed border border-1 border-info fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#deskripsi{{$m->id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Deskripsi
+                                      </button>
+                                    </h2>
+                                    <div id="deskripsi{{$m->id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                      <div class="accordion-body">
+                                        {!!$m->deskripsi!!}
                                       </div>
                                     </div>
-                                  </div> --}}
-
-                            </div>
-                        </div>
-                        <table class="">
-                            <tr>
-                                <td><h5 class="card-title container" style="color: #1A5276;">Topik&nbsp;</h5></td>
-                                <td><h5 class="card-title" style="color: #1A5276;">:</h5></td>
-                                {{-- <td><h5 class="card-title container" style="color: #1A5276;">{{ $item->Topik }}</h5></td> --}}
-                            </tr>
-                            <tr>
-                                <td><p class="container">Judul</p></td>
-                                <td><p class="">:</p></td>
-                                {{-- <td><p class="container">{{ $item->Judul }}</p></td> --}}
-                            </tr>
-                            <tr>
-                                <td><p class="container" style="margin-top: -15px; color: #D4AC0D;"><i class="fas fa-clock"></i>Time</p></td>
-                                <td><p class="" style="margin-top: -15px; color: #D4AC0D;">:</p></td>
-                                {{-- <td><p class="container" style="margin-top: -15px; color: #D4AC0D;">{{ $item->waktumulai }} sampai {{ $item->waktuselesai }}</p></td> --}}
-                            </tr>
-                        </table>
-                        <div class="card-body">
-                          {{-- @if ($item->deskripsi!=NULL) --}}
-                            <div class="accordion mb-2" id="accordionExample">
-                              <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                  {{-- <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#des{{$item->id}}" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="fas fa-info-circle"></i> &nbsp;Deskripsi
-                                  </button> --}}
-                                </h2>
-                                {{-- <div id="des{{$item->id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                    <strong>Apa yang akan dilakukan siswa pada materi ini ?</strong><br>
-                                    <p>{!!$item->deskripsi!!}</p>
                                   </div>
-                                </div> --}}
+                                </div>
                               </div>
                             </div>
-                          {{-- @endif
-                          @if ($item->vidio != NULL)
-                            <button class="btn btn-outline-danger mb-1" data-bs-toggle="modal" data-bs-target="#video{{ $item->id }}"><i class="fab fa-youtube"></i> Play Video</button>
-                          @endif
-                          @if ($item->file != NULL)
-                            <a href="/kelas1/ips/download/{{$item->file}}" class="btn btn-outline-info"><i class="fas fa-file-alt"></i> Download Materi</a>
-                          @endif --}}
+                          </div>
+                        </div>
+                        <div class="col-md-1">
+
+                          <div class="p-3 mb-2 bg-white menu-materi-card">
+                            <a class="fw-bold " href="/kelas/materi/{{$mapel->id}}/{{$m->id}}/edit"><i class="fas fa-edit"></i> EDIT</a>
+                          </div>
+
+                          <div class="p-3 bg-white  menu-materi-card">
+                            <a class="fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#delete{{$m->id}}"><i class="fas fa-trash"></i> DELETE</a>
+                          </div>
+
+                          {{--modal hapus--}}
+                            <div class="modal fade" id="delete{{$m->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content modalhapus" style="background-color: white;">
+                                  <div class="modal-body">
+                                    <h1 class="text-center text-warning warning"><i class="fas fa-exclamation-triangle"></i></h1>
+                                    <h2 class="text-center">Apakah kamu yakin?</h2>
+                                    <p class="text-center text-muted container">Materi yang dihapus tidak dapat dipulihkan</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
+                                    <a href="/kelas/materi/{{$mapel->id}}/{{$m->id}}/delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Materi</a>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          {{--modal hapus end--}}
+
+                          <div class="bg-white calendar  menu-materi-card mt-3">
+                            <div class="calender-block d-flex">
+                              <button class="btn btn-sm btn-dark"></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <button class="btn btn-sm btn-dark"></button>
+                            </div>
+                            <img class="pin-icon" src="{{asset('icon/pin.png')}}" alt="">
+                            <div class="bg-danger text-center cal-title rounded px-2 py-1 text-sm fw-bold text-white text-uppercase">
+                              {{\Carbon\Carbon::parse($m->tanggal)->formatLocalized('%b')}}
+                              {{\Carbon\Carbon::parse($m->tanggal)->format('Y')}}</div>
+                            <div class="py-2 text-center">
+                              <h1 class="text-secondary fw-bold">{{\Carbon\Carbon::parse($m->tanggal)->format('d')}}</h1>
+                              <small class="text-uppercase fw-bold text-sm">{{\Carbon\Carbon::parse($m->tanggal)->format('l')}}</small>
+                            </div>
+                          </div>
 
                         </div>
                       </div>
-                      {{-- Modal Video --}}
-                    <!-- Modal -->
-                    {{-- <div class="modal fade" id="video{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
-                      <div class="modal-content modalbl">
-                          <div class="modal-header">
-                            <img src="{{ asset('gambar/robotvideo.gif') }}" style="max-width: 60px;" alt=""> 
-                          <h4 class="modal-title" id="exampleModalLabel">Tonton Video Yukk!</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="container col-12">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$item->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                          </div>
-                          <br>
-                      </div>
-                      </div>
-                  </div> --}}
-                  <br>
-                  {{-- @endif
-                @endforeach --}}
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="py-5">
+                      <h1 class="text-center fw-bold text-secondary">
+                       &#128012; Belom ada materi pada bulan ini
+                      </h1>
+                    </div>
+                    @endif
+
                 </div>
                 {{--end0fjanuary--}}
                

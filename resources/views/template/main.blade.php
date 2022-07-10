@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <x-embed-styles />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;800&display=swap');
         body{
@@ -114,7 +115,7 @@
             height: 100px;
           }
           .img-mapel-area img{
-            height: 100%;
+            max-height: 100px;
           }
 
           .materi-link{
@@ -129,13 +130,50 @@
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
           }
 
-          textarea{
-            height: 200px;
-          }
-
           .ck-editor__editable {
               min-height: 200px;
           }
+
+          .img-materi-card{
+            width: 100%;
+          }
+
+          .line-materi-card{
+            margin: auto;
+            border-right: 8px solid black;
+            border-left: 0;
+            border-color: rgba(255, 234, 130, 0.759);
+            border-style: dashed;
+            height: 80%; 
+            width: 0px;
+          }
+
+          .card-materi-desc{
+            border-radius: 20px;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+          }
+
+          .menu-materi-card{
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+            border-radius: 10px;
+            width: max-content;
+          }
+          .pin-icon{
+            max-width: 30px;
+            position: absolute;
+            margin-left: 5%;
+            margin-top: 70px;
+          }
+
+          .calender-block{
+            position: absolute;
+            margin-left: 20px;
+            margin-top: -14px;
+          }
+
+          .cal-title{
+            width: 100px;
+          } 
 
         @media only screen and (max-width: 800px) {
           .img-mapel-area{
@@ -143,6 +181,30 @@
           }
           .img-mapel-area img{
             height: 100%;
+          }
+
+          .line-materi-card{
+            display: none;
+          }
+
+          .menu-materi-card{
+            display: inline;
+            margin-right: 10px;
+            font-size: 12px;
+            margin-top: 10px;
+            float: right;
+          }
+
+          .pin-icon{
+           display: none;
+          }
+
+          .calender-block button{
+            display: none;
+          }
+
+          .calendar h1{
+            font-size: 15px;
           }
         }
       </style>
