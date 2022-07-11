@@ -28,7 +28,7 @@ class User extends Authenticatable
     protected $guarded = ['id'];
 
     public function kelas(){
-        return $this->belongsTo(kelas::class);
+        return $this->belongsTo(kelas::class,'kelas_id');
     }
 
     public function submission(){
