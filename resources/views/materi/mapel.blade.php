@@ -5,13 +5,9 @@
 @include('template.mapel-materi')
 
 <div class="mainlist mt-4 mb-4">  
-  <div class="col-10 container mt-4">
-      <div class="list-group list-group-horizontal-sm " id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active fw-bold text-center" href="/kelas/materi/{{$mapel->id}}" aria-controls="list-home"><i class="fas fa-book"></i> Materi</a>
-          <a class="list-group-item list-group-item-action fw-bold text-center" href="/latihan" aria-controls="list-profile"><i class="fas fa-pencil-alt"></i> Latihan</a>
-          <a class="list-group-item list-group-item-action fw-bold text-center" href="/submit" aria-controls="list-profile"><i class="fas fa-calendar-check"></i> Tugas</a>
-      </div>
-   </div>
+
+  @include('template.mapel-page-link')
+
     <div class="container mt-2">
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active container" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
@@ -109,7 +105,7 @@
                           </div>
 
                           <div class="p-3 bg-white  menu-materi-card">
-                            <a class="fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#delete{{$m->id}}"><i class="fas fa-trash"></i> DELETE</a>
+                            <a class="fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#delete{{$m->id}}"><i class="fas fa-trash"></i> HAPUS</a>
                           </div>
 
                           {{--modal hapus--}}
@@ -170,5 +166,84 @@
       </div>
     </div>
   </div>
+
+  <style>
+    .disscussion-forum-button{
+      width: max-content;
+      /* background-color: black; */
+      /* overflow: hidden; */
+    }
+
+    .disscussion-forum-button .btn-chat-area{
+      /* border: 1px solid #AF601A; */
+      max-width: 100px;
+      max-height: 100px;
+      padding: 16px;
+      background-color: rgb(0, 43, 135);
+      border-radius: 100%;
+    
+      transition: 0.3s ease;
+    }
+
+    .btn-chat-area img{
+      transition: 0.3s ease;
+    }
+
+    .btn-chat-area:hover{
+       box-shadow: rgba(48, 155, 255, 0.686) 0px 10px 50px;
+    }
+    .btn-chat-area:hover img{
+      /* box-shadow: rgba(48, 155, 255, 0.686) 0px 10px 50px; */
+      transform: scale(1.50);
+      /* padding: 10px; */
+
+    }
+
+    
+
+    .disscussion-forum-button img{
+      width: 100%;
+    }
+
+    .forum-btn{
+      padding: 20px;
+    }
+
+    .forum-desc{
+      transition: 0.3s ease-in;
+      /* position: absolute; */
+      border-radius:5px 100px 100px 5px;
+      margin-bottom: -225px;
+      /* border: 5px solid; */
+      /* border-color: rgb(170, 218, 255); */
+      box-shadow: rgba(48, 155, 255, 0.686) 0px 10px 50px;
+    }
+
+    /* .btn-forum:hover .forum-desc{
+      margin-top: -105px;
+    }  */
+
+    .disscussion-forum-button:hover .forum-desc{
+      margin-bottom: 40px;
+    } 
+
+  </style>
+
+
+<div class="d-flex justify-content-end fixed-bottom">
+  <div class="forum-btn ">
+    <div class="disscussion-forum-button">
+      <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Ruang bertanya">
+      {{-- <div class="bg-white p-3 forum-desc">
+        <h5 class="tx-main fw-bold">Apakah kamu merasa bingung?</h5>
+        <small class="fw-bold text-secondary">&#128521; Mari tanyakan di ruang bertanya</small>
+      </div>&nbsp;&nbsp; --}}
+      <div class="btn-chat-area" id="btn-chat-area">
+        <a class="btn-forum"  href=""><img src="{{asset('/icon/chat.png')}}" alt=""></a>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
 
 @endsection

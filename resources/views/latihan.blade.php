@@ -70,7 +70,7 @@ showTime();
 </div>
 
 <div class="mainlist mt-4 mb-4">  
-  <div class="col-10 container mt-4">
+  <div class="col-10 container mt-4"></div>
       <div class="list-group list-group-horizontal-sm " id="list-tab" role="tablist">
         <a class="list-group-item list-group-item-action fw-bold text-center" href="/detail" aria-controls="list-home"><i class="fas fa-book"></i> Materi</a>
         <a class="list-group-item list-group-item-action active fw-bold text-center" href="/latihan" aria-controls="list-profile"><i class="fas fa-pencil-alt"></i> Latihan</a>
