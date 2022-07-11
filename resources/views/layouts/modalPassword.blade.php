@@ -1,5 +1,5 @@
 <div class="modal fade" id="password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
     <form enctype="multipart/form-data" action="/profil/password/{{ Auth::user()->id }}" method="post">
         {{ csrf_field() }}
@@ -14,7 +14,7 @@
 
             <div class="form-group mt-3">
                 <div class="d-flex justify-content-center">
-                    <label class="mx-4 w-25" >Password Baru</label>
+                    <label class="mx-4 w-50" >Password Baru</label>
                     <input id="password" type="password" name="password" class="form-control mx-4" autofocus autocomplete="off" required>
                 </div>
                 @error('password')
@@ -25,7 +25,7 @@
 
             <div class="form-group mt-3">
                 <div class="d-flex justify-content-center">
-                    <label class="mx-4 w-25" >Konfirmasi Password  </label>
+                    <label class="mx-4 w-50" >Konfirmasi Password  </label>
                     <input  id="password-confirm" type="password" class="form-control mx-4" name="password_confirmation" required autocomplete="new-password">
                 </div>
                 @error('password')
