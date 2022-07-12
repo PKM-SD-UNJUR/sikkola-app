@@ -47,7 +47,7 @@
                               <h4 class="fw-bold">{{$m->topik}}</h4>
                               <h6 class="text-secondary fw-bold">{{$m->judul}}</h6>
                               <div class="mt-1">
-                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{Carbon\Carbon::parse($m->waktumulai)->format('H:i')}} - {{Carbon\Carbon::parse($m->waktuselesai)->format('H:i')}} WIB</h6>
+                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{Carbon\Carbon::parse($m->waktumulai)->format('H:i')}} - {{Carbon\Carbon::parse($m->waktuselesai)->format('H:i')}}</h6>
                               </div>
                               <div class="py-2 d-flex justify-content-start">
                                 @if ($m->video != null)
@@ -57,16 +57,16 @@
 
                                 {{--modal video--}}
                                   <div class="modal fade" id="video{{ $m->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-fullscreen-sm-down">
                                     <div class="modal-content modalbl">
                                         <div class="modal-header">
-                                          <img src="{{ asset('gambar/robotvideo.gif') }}" style="max-width: 60px;" alt=""> 
+                                          <img src="../../../../gambar/robotvideo.gif" style="max-width: 100px;" alt=""> 
                                         <h4 class="modal-title" id="exampleModalLabel">Tonton Video Yukk!</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="container col-12">
-                                          <x-embed url="{{$m->video}}" aspect-ratio="4:3" />
-                                          {{-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$m->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+                                        <div class="container col-12 text-center mt-5">
+                                          <x-embed url="{{$m->video}}" />
+                                          {{-- <iframe src="https://www.youtube.com/embed/{{$m->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
                                         </div>
                                         <br>
                                     </div>
@@ -74,7 +74,7 @@
                                 </div>
                                 {{--modal video end--}}
                                 @if ($m->file != null)
-                                  <a class="btn btn-outline-info btn-sm" href="{{asset("storage/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
+                                  <a class="btn btn-outline-info btn-sm" href="{{asset("storage/materi/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
                                 @endif
                               </div>
                               @if ($m->deskripsi != null)
@@ -100,13 +100,15 @@
                         </div>
                         <div class="col-md-1">
 
+                        @if(Auth::user()->role == 'guru')
                           <div class="p-3 mb-2 bg-white menu-materi-card">
-                            <a class="fw-bold " href="/kelas/materi/{{$mapel->id}}/{{$m->id}}/edit"><i class="fas fa-edit"></i> EDIT</a>
+                            <a class="fw-bold " href="/kelas/materi/{{$mapel->id}}/{{$m->id}}/edit"><i class="fas fa-edit"></i> UBAH</a>
                           </div>
 
                           <div class="p-3 bg-white  menu-materi-card">
                             <a class="fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#delete{{$m->id}}"><i class="fas fa-trash"></i> HAPUS</a>
                           </div>
+                        @endif
 
                           {{--modal hapus--}}
                             <div class="modal fade" id="delete{{$m->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,7 +150,7 @@
                     @else
                     <div class="py-5">
                       <h1 class="text-center fw-bold text-secondary">
-                       &#128012; Belom ada materi pada bulan ini
+                       &#128012; Belum ada materi pada bulan ini
                       </h1>
                     </div>
                     @endif

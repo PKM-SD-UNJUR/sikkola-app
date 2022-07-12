@@ -167,6 +167,16 @@
       width: 0px;
     }
 
+    .line-latihan-card {
+      margin: auto;
+      border-right: 8px solid black;
+      border-left: 0;
+      border-color: rgba(248,228,200, 0.8);
+      border-style: dashed;
+      height: 80%;
+      width: 0px;
+    }
+
     .card-materi-desc {
       border-radius: 20px;
       box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
@@ -240,6 +250,10 @@
         <i class="fas fa-bars"></i>
       </button>
 
+      @if(Auth::user()->role == 'guru')
+      <a class="btn btn-info ms-auto mx-5" href="/dashboard">Lihat Halaman Guru</a>
+      @endif
+
       <div class="dropdown mr-5">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user"></i>&nbsp; {{ Auth::user()->name }} &nbsp;&nbsp;
@@ -247,7 +261,6 @@
         <ul class="dropdown-menu  mt-2" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="{{ route('profil') }}"><i class="fas fa-address-card"></i>&nbsp;Profil</a></li>
           <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>&nbsp;Keluar</a></li>
-          </form>
         </ul>
       </div>
     </div>
@@ -265,6 +278,7 @@
   </div>
 
   <br><br>
+  <br><br>
   <footer class="fixed-bottom mt-3">
     <div class="bg p-1 py-1">
       <div class="d-flex mt-1">
@@ -274,7 +288,7 @@
         <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>
       </div>
   
-      <br><br>
+      <!-- <br><br>
         <footer class=" mt-4">
           <div class="bg p-1 py-3">
               <div class="d-flex mt-2">
@@ -283,7 +297,7 @@
               </div>
             <p class="text-center text-light mt-1">Copyright &copy;2021 | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>
           </div>
-        </footer>
+        </footer> -->
 
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

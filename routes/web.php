@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardKelasController;
+use App\Http\Controllers\dashboardLatihanController;
 use App\Http\Controllers\dashboardMapelController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LatihanController;
@@ -29,7 +30,7 @@ Route::get('/register', function () {
 
 // SISWA
 
-Route::middleware(['auth', 'RoleUser:siswa'])->group(function () {
+Route::middleware('RoleUser:guru,siswa')->group(function () {
 
     // PROFIL
     Route::get('/profil', [UserController::class, 'profil'])->name('profil');
@@ -46,7 +47,23 @@ Route::middleware(['auth', 'RoleUser:siswa'])->group(function () {
 
     Route::get('/kelas/{kela:id}', [berandaController::class, 'listMapel']);
 
-    // Route::get('/kelas/materi/{mapel:id}/',[materiController::class,'materiList']);
+
+    
+    // LATIHAN
+
+    Route::get('/kelas/latihan/{mapel:id}/create', [LatihanController::class, 'create']);
+
+    Route::get('/kelas/latihan/{id}/{latihan:id}/edit', [LatihanController::class, 'edit']);
+
+    Route::post('/kelas/latihan/{id}/{latihan:id}/update', [LatihanController::class, 'update']);
+
+    Route::get('/kelas/latihan/{id}/{latihan:id}/delete', [LatihanController::class, 'destroy']);
+
+    Route::post('/kelas/latihan/{mapel:id}', [LatihanController::class, 'store']);
+
+    Route::get('/kelas/latihan/{mapel:id}/{tgl}', [LatihanController::class, 'latihanList']);
+
+    // MATERI
 
     Route::get('/kelas/materi/{mapel:id}/create', [materiController::class, 'create']);
 
@@ -60,13 +77,18 @@ Route::middleware(['auth', 'RoleUser:siswa'])->group(function () {
 
     Route::get('/kelas/materi/{mapel:id}/{tgl}', [materiController::class, 'materiList']);
 
+
+
+
+
+
     Route::get('/kelas', function () {
         return view('kelas');
     });
 
-    Route::get('/detail', function () {
-        return view('mapel');
-    });
+    // Route::get('/detail', function () {
+    //     return view('mapel');
+    // });
 
     Route::get('/submit', function () {
         return view('submission');
@@ -83,10 +105,12 @@ Route::middleware(['auth', 'RoleUser:siswa'])->group(function () {
 
 // GURU
 
-Route::middleware(['auth', 'RoleUser:guru'])->group(function () {
+Route::middleware('RoleUser:guru')->group(function () {
 
 
     // Route::get('/kelas/{kela:id}', das);
+
+    Route::get('/dashboard', [dashboardKelasController::class, 'index']);
 
     Route::resource('/dashboard/kelas', dashboardKelasController::class);
 
@@ -98,11 +122,11 @@ Route::middleware(['auth', 'RoleUser:guru'])->group(function () {
 
 
     // Latihan
-    Route::get('/dashboard/latihan', [LatihanController::class, 'kelolaLatihan']);
+    Route::get('/dashboard/latihan', [dashboardLatihanController::class, 'kelolaLatihan']);
 
     Route::prefix('dashboard/latihan')->group(function () {
-        Route::get('/', [LatihanController::class, 'kelolaLatihan'])->name('kelola-latihan');
-        Route::resource('kelola', LatihanController::class);
+        Route::get('/', [dashboardLatihanController::class, 'kelolaLatihan'])->name('kelola-latihan');
+        Route::resource('kelola', dashboardLatihanController::class);
     });
 });
 
