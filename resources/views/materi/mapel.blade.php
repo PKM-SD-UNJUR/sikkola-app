@@ -22,7 +22,7 @@
                 <a class="list-group-item list-group-item-action @if($tg == "04") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "04"}}" role="tab" aria-controls="list-settings">April</a>
                 <a class="list-group-item list-group-item-action @if($tg == "05") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "05"}}" role="tab" aria-controls="list-home">Mei</a>
                 <a class="list-group-item list-group-item-action @if($tg == "06") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "06"}}" role="tab" aria-controls="list-profile">Juni</a>
-                <a class="list-group-item list-group-item-action @if($tg == "07") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "07"}}" role="tab" aria-controls="list-messages">July</a>
+                <a class="list-group-item list-group-item-action @if($tg == "07") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "07"}}" role="tab" aria-controls="list-messages">Juli</a>
                 <a class="list-group-item list-group-item-action @if($tg == "08") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "08"}}" role="tab" aria-controls="list-settings">Agustus</a>
                 <a class="list-group-item list-group-item-action @if($tg == "09") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "09"}}" role="tab" aria-controls="list-home">September</a>
                 <a class="list-group-item list-group-item-action @if($tg == "10") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "10"}}" role="tab" aria-controls="list-profile">Oktober</a>
@@ -33,6 +33,13 @@
             <div class="container">
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="januari" role="tabpanel" aria-labelledby="list-profile-list">
+
+                @if(Auth::user()->role=='guru')
+                <div class="tambah my-3">
+                  <a class="btn btn-info fw-bold text-light" href="/kelas/materi/{{$mapel->id}}/create"><i class="fas fa-tasks"></i> TAMBAH MATERI</a>
+                </div>
+                @endif
+
                   @if($materi->count() > 0)
                   @foreach ($materi as $m)
                   <div class="materi-card container mb-3 mt-3">
@@ -74,7 +81,7 @@
                                 </div>
                                 {{--modal video end--}}
                                 @if ($m->file != null)
-                                  <a class="btn btn-outline-info btn-sm" href="{{asset("storage/materi/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
+                                  <a class="btn btn-outline-info btn-sm" href="{{asset("storage/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
                                 @endif
                               </div>
                               @if ($m->deskripsi != null)

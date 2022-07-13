@@ -7,6 +7,8 @@ use App\Http\Controllers\dashboardMapelController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\materiController;
+use App\Http\Controllers\SubmitFormController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -79,24 +81,39 @@ Route::middleware('RoleUser:guru,siswa')->group(function () {
 
 
 
+    // SUBMIT FORM
 
+    Route::post('/kelas/submitForm/{id}/{submitForm:id}/update', [SubmitFormController::class, 'update']);
 
+    Route::get('/kelas/submitForm/{id}/{submitForm:id}/delete', [SubmitFormController::class, 'destroy']);
 
-    Route::get('/kelas', function () {
-        return view('kelas');
-    });
+    Route::post('/kelas/submitForm/{mapel:id}', [SubmitFormController::class, 'store']);
 
-    // Route::get('/detail', function () {
-    //     return view('mapel');
+    Route::get('/kelas/submitForm/{mapel:id}/{tgl}', [SubmitFormController::class, 'submitList']);
+
+    // SUBMISSION
+
+    Route::post('/kelas/submission/{mapel:id}', [SubmissionController::class, 'store']);
+
+    Route::get('/kelas/submission/{mapel:id}/{id}/delete', [SubmissionController::class, 'destroy']);
+
+    Route::post('/kelas/submission/{mapel:id}/{id}/update', [SubmissionController::class, 'update']);
+
+    // Route::get('/kelas', function () {
+    //     return view('kelas');
     // });
 
-    Route::get('/submit', function () {
-        return view('submission');
-    });
+    // // Route::get('/detail', function () {
+    // //     return view('mapel');
+    // // });
 
-    Route::get('/latihan', function () {
-        return view('latihan');
-    });
+    // Route::get('/submit', function () {
+    //     return view('submission');
+    // });
+
+    // Route::get('/latihan', function () {
+    //     return view('latihan');
+    // });
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard-layout.kelas.kelas');

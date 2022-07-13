@@ -137,7 +137,7 @@ class LatihanController extends Controller
 
         latihan::where('id',$latihan->id)->update($data);
 
-        return redirect("/kelas/latihan/$back/$tanggal")->with('success','Latihan berhasil dibubah');
+        return redirect("/kelas/latihan/$back/$tanggal")->with('success','Latihan berhasil diubah');
     }
 
     /**

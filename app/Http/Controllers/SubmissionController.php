@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\submission;
-use App\Http\Requests\StoresubmissionRequest;
-use App\Http\Requests\UpdatesubmissionRequest;
+use App\Models\mapel;
+use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
@@ -34,9 +34,28 @@ class SubmissionController extends Controller
      * @param  \App\Http\Requests\StoresubmissionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoresubmissionRequest $request)
+    public function store(Request $request, mapel $mapel)
     {
-        //
+
+        $validasi = [
+            'file' => 'required',
+            'user_id' => 'required',
+            'submitForm_id' => 'required',
+            'created_at' => 'nullable'
+        ];
+
+
+        $data = $request->validate($validasi);
+
+        $data['file'] = $request->file('file')->store("submission/$mapel->nama");
+
+        $submit = submission::create($data);
+
+        $back = $mapel->id;
+        $tanggal = \Carbon\Carbon::parse($submit->created_at)->format('m');
+
+
+        return redirect("/kelas/submitForm/$back/$tanggal")->with('success', 'Tugas berhasil dikirim');
     }
 
     /**
@@ -68,9 +87,24 @@ class SubmissionController extends Controller
      * @param  \App\Models\submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatesubmissionRequest $request, submission $submission)
+    public function update(Request $request, mapel $mapel, $id)
     {
-        //
+
+        $request->validate([
+            'filebaru' => 'required'
+        ]);
+
+        $submit = submission::find($id);
+        $submit->file = $request->filebaru;
+        $submit->save();
+
+
+        $request->file('filebaru')->store("submission/$mapel->nama");
+
+        $back = $mapel->id;
+        $tanggal = \Carbon\Carbon::parse($submit->updated_at)->format('m');
+
+        return redirect("/kelas/submitForm/$back/$tanggal")->with('success', 'Tugas berhasil diubah');
     }
 
     /**
@@ -79,8 +113,9 @@ class SubmissionController extends Controller
      * @param  \App\Models\submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(submission $submission)
+    public function destroy(mapel $mapel,$id)
     {
-        //
+        submission::destroy($id);
+        return redirect("/kelas/submitForm/$mapel->id/01")->with('success','Tugas berhasil dihapus');
     }
 }

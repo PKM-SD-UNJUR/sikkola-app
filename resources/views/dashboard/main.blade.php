@@ -98,7 +98,8 @@
             </div>
             
             <div class="ms-auto d-flex ">
-                <a class="btn btn-info mx-5 ms-auto" href="/">Lihat Halaman Siswa</a>
+                <a class="btn btn-info mx-5 ms-auto fw-bold text-light" href="/"><i class="fas fa-user-graduate"></i> Lihat Halaman Siswa</a>
+
         
                 <div class="dropdown">
                     <a class="btn btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
