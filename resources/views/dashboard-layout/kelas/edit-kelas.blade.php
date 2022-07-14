@@ -40,10 +40,10 @@
         <br>
         <div>
             <label for="">Gambar</label>
-            <div class="img-display py-2">
-                <img src="{{asset("storage/$kelas->gambar")}}" alt="">
+            <div class="img-display py-2 border">
+                <img src="../../../kelas/{{$kelas->gambar}}" alt="" width="70">
             </div>
-            <input name="gambar" type="file" class="form-control" value="{{$kelas->gambar}}">
+            <input name="gambar" type="file" class="form-control mt-2" value="{{$kelas->gambar}}">
             <input type="hidden" name="oldImage" value={{$kelas->gambar}}>
         </div>
         @error("gambar")

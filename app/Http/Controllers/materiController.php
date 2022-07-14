@@ -8,7 +8,7 @@ use App\Models\mapel;
 use App\Models\kelas;
 use App\Models\materi;
 use App\Models\latihan;
-use Alert;  
+use Alert;
 use Carbon\Carbon;
 use Storage;
 
@@ -24,13 +24,14 @@ class materiController extends Controller
         //
     }
 
-    public function materiList(mapel $mapel, $tgl){
+    public function materiList(mapel $mapel, $tgl)
+    {
 
-        $materi = materi::where('mapel_id',$mapel->id)->whereMonth('tanggal',$tgl)->get();
+        $materi = materi::where('mapel_id', $mapel->id)->whereMonth('tanggal', $tgl)->get();
 
-        $latihan = latihan::where('mapel_id',$mapel->id)->whereMonth('waktumulai',$tgl)->get();
+        $latihan = latihan::where('mapel_id', $mapel->id)->whereMonth('waktumulai', $tgl)->get();
 
-        return view('materi.mapel',[
+        return view('materi.mapel', [
             'mapel' => $mapel,
             'materi' => $materi,
             'latihan' => $latihan,
@@ -38,44 +39,50 @@ class materiController extends Controller
         ]);
     }
 
-    public function create(mapel $mapel){
+    public function create(mapel $mapel)
+    {
 
-        return view('materi.tambah-materi',[
+        return view('materi.tambah-materi', [
             'mapel' => $mapel
         ]);
     }
 
-    public function store(Request $request, mapel $mapel){
+    public function store(Request $request, mapel $mapel)
+    {
         // return $tgl;
 
         // return $request;
 
         $validasi = [
-            'topik'=>'required|min:3',
-            'tanggal'=>'required',
-            'judul'=>'required|min:5',
-            'waktumulai'=>'required',
-            'waktuselesai'=>'required',
+            'topik' => 'required|min:3',
+            'tanggal' => 'required',
+            'judul' => 'required|min:5',
+            'waktumulai' => 'required',
+            'waktuselesai' => 'required',
             'video' => 'nullable',
             'file' => 'nullable',
             'deskripsi' => 'nullable',
-            'mapel_id'=>'required',
-            'kelas_id'=>'required'
+            'mapel_id' => 'required',
+            'kelas_id' => 'required'
         ];
 
 
         $data = $request->validate($validasi);
 
-        if($request->has('file')){
-            $data['file'] = $request->file('file')->store("materi/$mapel->nama");
-       }
+        if ($request->has('file')) {
+            $file = $request->file('file');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('materi'), $namafile);
+
+            $data['file'] = $namafile;
+        }
 
         $back = $mapel->id;
         $tanggal = \Carbon\Carbon::parse($data['tanggal'])->format('m');
 
         materi::create($data);
 
-        return redirect("/kelas/materi/$back/$tanggal")->with('success','Materi berhasil dibuat');
+        return redirect("/kelas/materi/$back/$tanggal")->with('success', 'Materi berhasil dibuat');
     }
 
     /**
@@ -119,9 +126,9 @@ class materiController extends Controller
     public function edit($id, materi $materi)
     {
         // return $id;
-        $mapel = mapel::where('id',$id)->first();
+        $mapel = mapel::where('id', $id)->first();
 
-        return view('materi.ubah-materi',[
+        return view('materi.ubah-materi', [
             'mapel' => $mapel,
             'materi' => $materi
         ]);
@@ -137,38 +144,38 @@ class materiController extends Controller
     public function update(Request $request, $id, materi $materi)
     {
         $validasi = [
-            'topik'=>'required|min:3',
-            'tanggal'=>'required',
-            'judul'=>'required|min:5',
-            'waktumulai'=>'required',
-            'waktuselesai'=>'required',
+            'topik' => 'required|min:3',
+            'tanggal' => 'required',
+            'judul' => 'required|min:5',
+            'waktumulai' => 'required',
+            'waktuselesai' => 'required',
             'video' => 'nullable',
             'file' => 'nullable',
             'deskripsi' => 'nullable',
-            'mapel_id'=>'required',
-            'kelas_id'=>'required',
+            'mapel_id' => 'required',
+            'kelas_id' => 'required',
         ];
 
-        $mapel = mapel::where("id",$id)->first();
+        $mapel = mapel::where("id", $id)->first();
 
         $data = $request->validate($validasi);
-        // return $request->oldFile;
-        if($request->has('file')){
 
-            if($request->oldFile){
-                Storage::delete($request->oldFile);
-            }
+        if ($request->has('file')) {
+            $file = $request->file('file');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('materi'), $namafile);
 
-            $data['file'] = $request->file('file')->store("materi/$mapel->nama");
-       }
+            $data['file'] = $namafile;
+        }
+
 
         $back = $id;
         $tanggal = \Carbon\Carbon::parse($data['tanggal'])->format('m');
         // return $tanggal;
 
-        materi::where('id',$materi->id)->update($data);
+        materi::where('id', $materi->id)->update($data);
 
-        return redirect("/kelas/materi/$back/$tanggal")->with('success','Materi berhasil diubah');
+        return redirect("/kelas/materi/$back/$tanggal")->with('success', 'Materi berhasil diubah');
     }
 
     /**
@@ -179,10 +186,7 @@ class materiController extends Controller
      */
     public function destroy($id, materi $materi)
     {
-        if($materi->image){
-            Storage::delete($materi->image);
-        }
         materi::destroy($materi->id);
-        return redirect("/kelas/materi/$id/01")->with('success','Materi berhasil dihapus');
+        return redirect("/kelas/materi/$id/01")->with('success', 'Materi berhasil dihapus');
     }
 }

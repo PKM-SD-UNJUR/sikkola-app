@@ -58,7 +58,7 @@
                               </div>
                               <div class="py-2 d-flex justify-content-start">
                                 @if ($m->video != null)
-                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#video{{ $m->id }}"><i class="fab fa-youtube"></i> video</button>&nbsp;&nbsp;
+                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#video{{ $m->id }}"><i class="fab fa-youtube"></i> Lihat Video</button>&nbsp;&nbsp;
                                 @endif
                                 
 
@@ -72,8 +72,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="container col-12 text-center mt-5">
-                                          <x-embed url="{{$m->video}}" />
-                                          {{-- <iframe src="https://www.youtube.com/embed/{{$m->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+                                          <x-embed url="{{$m->video}}" size="100" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
                                         </div>
                                         <br>
                                     </div>
@@ -81,7 +80,7 @@
                                 </div>
                                 {{--modal video end--}}
                                 @if ($m->file != null)
-                                  <a class="btn btn-outline-info btn-sm" href="{{asset("storage/$m->file")}}" download><i class="fas fa-file-download"></i> file materi</a>
+                                  <a class="btn btn-outline-info btn-sm" href="/materi/{{$m->file}}" download><i class="fas fa-file-download"></i> File Materi</a>
                                 @endif
                               </div>
                               @if ($m->deskripsi != null)

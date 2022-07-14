@@ -10,7 +10,7 @@
 @section('content')
 <div class="container">
     <div>
-        <a class="fw-bold tx-info bar-item" href="/dashboard">Mapel</a> / <span class="text-secondary">Buat Latihan</span>
+        <a class="fw-bold tx-info bar-item" href="/dashboard">Mapel</a> / <span class="text-secondary">Daftar Latihan</span>
     </div>
     @if (session()->has('success'))
     <br>
@@ -28,8 +28,11 @@
             @foreach($kelas as $k)
             <span data-bs-toggle="collapse" href="#collapse{{$k->id}}" style="text-decoration: none;">
                 <div class="mapel-bar row mb-3">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <h4 class="mt-2">{{$k->nama}}</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="../kelas/{{$k->gambar}}" alt="" width="70">
                     </div>
                     <div class=" col-md-2">
                         <small>Jumlah mata pelajaran : </small>
@@ -53,10 +56,14 @@
                     <div class="row mx-5">
                         @if($k->mapel->count()!=0)
                         @foreach($mapel->where('kelas_id',$k->id) as $m)
-                        <div class="mapel-bar2 row mb-3">
-                            <div class="col-md-4">
-                                <h4 class="mt-2">{{$m->nama}}</h4>
-                            </div>
+                        <div class="mapel-bar2 row mb-3 py-2">
+                        <div class="col-md-2">
+                        <h6 class="mt-2">{{$m->nama}}</h6>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="../mapel/{{$m->gambar}}" alt="" width="50">
+                    </div>
+                            
                             <div class="col-md-2">
                                 <div>
                                     <small>Jumlah latihan : </small>
@@ -68,9 +75,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="mt-2">
                                     <a href="{{route('kelola.index',['id'=>$m->id])}}" class="btn btn btn-warning text-uppercase fw-bold text-sm"><small><i class="fas fa-cog"></i> kelola latihan {{$m->nama}}</small></a>
-                                </div>
                             </div>
                         </div>
                         @endforeach

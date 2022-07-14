@@ -44,7 +44,7 @@
             <tr>
                 <td>{{$i}}</td>
                 <td>{{$sub->user->name}}</td>
-                <td><a href="{{asset("storage/$sub->file")}}" class="link-secondary" target="_blank"><i class="fas fa-file-download"> file-{{$i}}</i></a></td>
+                <td><a href="/submission/{{$sub->file}}" class="link-secondary" target="_blank"><i class="fas fa-file-download">Tugas-{{$sub->user->name}}</i></a></td>
                 @if ($sub->updated_at->isBefore($m->deadline))
                 <td class="table-success">Tepat Waktu</td>
                 @else
@@ -66,7 +66,7 @@
         <tr>
             <td>File</td>
             <td>:</td>
-            <td><a  href="{{asset("storage/$tugas->file")}}" class="link-secondary" target="_blank"><i class="fas fa-file-download"> Tugas Saya</i></a></td>
+            <td><a  href="/../submission/{{$tugas->file}}" class="link-secondary" target="_blank"><i class="fas fa-file-download"> Lihat Tugas Saya</i></a></td>
         </tr>
         <tr>
             <td>Waktu Pengumpulan</td>
