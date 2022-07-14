@@ -39,5 +39,13 @@ class DatabaseSeeder extends Seeder
             'deskripsi' => 'mari bergabung ke kelas ini yooo',
             'gambar' => '/img/kelas1.png'
         ]);
+
+        \App\Models\User::create([
+            'name' => 'Guru',
+            'email' => 'siswa@gmail.com',
+            'role' => 'guru',
+            'kelas_id' => 1,
+            'password' => bcrypt('12345678')
+        ]);
     }
 }

@@ -7,6 +7,9 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\materiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\forumController;
+use App\Http\Controllers\pertanyaanController;
+use App\Http\Controllers\jawabanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +63,19 @@ Route::middleware(['auth', 'RoleUser:siswa'])->group(function () {
 
     Route::get('/kelas/materi/{mapel:id}/{tgl}', [materiController::class, 'materiList']);
 
+    Route::get('/kelas/materi/{mapel:id}/forum/question', [forumController::class, 'index']);
+
+    Route::resource('/kelas/materi/forum/mapel.question', pertanyaanController::class);
+
+    Route::get('/kelas/materi/forum/accept/{id}/{pertanyaan:id}/{status}/{jwb}', [pertanyaanController::class, 'accept']);
+
+    Route::post('/kelas/materi/forum/{id}/{pertanyaan:id}/{jwb}/delete', [jawabanController::class, 'destroy']);
+
+    Route::resource('/kelas/materi/forum/question.jawab', jawabanController::class); 
+    // /kelas/materi/forum/mapel/1/kelas/materi/forum/accept/mapel/1/question/3
+
+
+
     Route::get('/kelas', function () {
         return view('kelas');
     });
@@ -76,9 +92,9 @@ Route::middleware(['auth', 'RoleUser:siswa'])->group(function () {
         return view('latihan');
     });
 
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard-layout.kelas.kelas');
-    // });
+    Route::get('/forum',[forumController::class, 'index']);
+
+
 });
 
 // GURU

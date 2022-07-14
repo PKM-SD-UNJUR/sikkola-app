@@ -265,7 +265,7 @@
   </div>
 
   <br><br>
-  <footer class="fixed-bottom mt-3">
+  <footer class="fixed-bottom mt-3 d-none">
     <div class="bg p-1 py-1">
       <div class="d-flex mt-1">
       <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>&nbsp;&nbsp;&nbsp;
@@ -273,6 +273,7 @@
       <p class="text-center text-light mt-1">Copyright © <?= date("Y"); ?> | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>&nbsp;&nbsp;&nbsp;
         <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>
       </div>
+    </footer>
   
       <br><br>
         <footer class=" mt-4">
@@ -286,19 +287,18 @@
         </footer>
 
     @include('sweetalert::alert')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script>
-      ClassicEditor
+          $(document).ready(function() {
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+          });
+
+          ClassicEditor
           .create( document.querySelector( '#editor' ) )
           .catch( error => {
               console.error( error );
           } );
-
-          $(document).ready(function() {
-            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-          });
     </script>
   </body>
 </html>

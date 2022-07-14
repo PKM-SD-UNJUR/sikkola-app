@@ -211,17 +211,10 @@
 
     .forum-desc{
       transition: 0.3s ease-in;
-      /* position: absolute; */
       border-radius:5px 100px 100px 5px;
       margin-bottom: -225px;
-      /* border: 5px solid; */
-      /* border-color: rgb(170, 218, 255); */
       box-shadow: rgba(48, 155, 255, 0.686) 0px 10px 50px;
     }
-
-    /* .btn-forum:hover .forum-desc{
-      margin-top: -105px;
-    }  */
 
     .disscussion-forum-button:hover .forum-desc{
       margin-bottom: 40px;
@@ -234,12 +227,8 @@
   <div class="forum-btn ">
     <div class="disscussion-forum-button">
       <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Ruang bertanya">
-      {{-- <div class="bg-white p-3 forum-desc">
-        <h5 class="tx-main fw-bold">Apakah kamu merasa bingung?</h5>
-        <small class="fw-bold text-secondary">&#128521; Mari tanyakan di ruang bertanya</small>
-      </div>&nbsp;&nbsp; --}}
       <div class="btn-chat-area" id="btn-chat-area">
-        <a class="btn-forum"  href=""><img src="{{asset('/icon/chat.png')}}" alt=""></a>
+        <a class="btn-forum"  href="/kelas/materi/forum/mapel/{{$mapel->id}}/question"><img src="{{asset('/icon/chat.png')}}" alt=""></a>
       </div>
     </div>
     </div>
