@@ -8,7 +8,7 @@
 @section('content')
 <div class="container">
 <div>
-    <a class="fw-bold tx-info bar-item" href="/dashboard/kelas">Kelas</a> / <span class="text-secondary">Buat kelas</span>
+    <a class="fw-bold tx-info bar-item" href="/dashboard/kelas">Mata Pelajaran</a> / <span class="text-secondary">Buat Mata Pelajaran</span>
 </div>
 <br>
 <div class="py-3 mt-1 bg-white">

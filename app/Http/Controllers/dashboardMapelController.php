@@ -124,10 +124,6 @@ class dashboardMapelController extends Controller
 
         if ($request->file('gambar')) {
 
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
-            }
-
             $file = $request->file('gambar');
             $namafile = time() . '.' . $file->extension();
             $file->move(public_path('mapel'), $namafile);
@@ -152,9 +148,7 @@ class dashboardMapelController extends Controller
     {
         // return request('kelas_id');
         $data = $mapel->id;
-        if ($mapel->image) {
-            Storage::delete($mapel->image);
-        }
+        
         $kelas = request('kelas_id');
         mapel::destroy($data);
         return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata pelajaran berhasil dihapus');

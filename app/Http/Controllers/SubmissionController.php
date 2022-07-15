@@ -47,7 +47,14 @@ class SubmissionController extends Controller
 
         $data = $request->validate($validasi);
 
-        $data['file'] = $request->file('file')->store("submission/$mapel->nama");
+
+        if ($request->has('file')) {
+            $file = $request->file('file');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('submission'), $namafile);
+
+            $data['file'] = $namafile;
+        }
 
         $submit = submission::create($data);
 
@@ -99,7 +106,13 @@ class SubmissionController extends Controller
         $submit->save();
 
 
-        $request->file('filebaru')->store("submission/$mapel->nama");
+        if ($request->has('filebaru')) {
+            $file = $request->file('filebaru');
+            $namafile = time() . '.' . $file->extension();
+            $file->move(public_path('submission'), $namafile);
+
+            $data['filebaru'] = $namafile;
+        }
 
         $back = $mapel->id;
         $tanggal = \Carbon\Carbon::parse($submit->updated_at)->format('m');

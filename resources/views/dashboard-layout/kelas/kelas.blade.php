@@ -38,9 +38,7 @@
         <td><a class="bar-item fw-bold" href="/dashboard/kelas/{{$k->id}}">{{$k->nama}}</a></td>
         <td>{{$k->deskripsi}}</td>
         <td>
-            <div class="img-display">
-                <a href="{{asset("/storage/$k->gambar")}}"><img src="{{asset("/storage/$k->gambar")}}" alt=""></a>
-            </div>
+            <img src="../kelas/{{$k->gambar}}" alt="" width="70">
         </td>
         <td>
             <div class="d-flex">

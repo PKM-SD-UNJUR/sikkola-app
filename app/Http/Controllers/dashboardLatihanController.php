@@ -28,7 +28,7 @@ class dashboardLatihanController extends Controller
 
     public function kelolaLatihan() {
         $latihan = latihan::with('kelas','mapel')->get();
-        $kelas = kelas::with('latihan','mapel')->get();
+        $kelas = kelas::latest()->with('latihan','mapel')->get();
         $mapel = mapel::with('kelas','latihan')->get();
         return view('dashboard-layout.latihan.kelola-latihan',compact('latihan','kelas','mapel'),['title'=>'latihan']);
     }

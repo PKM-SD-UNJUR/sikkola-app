@@ -18,11 +18,11 @@
       </div>
       <div class="row">
           <div class="col-md-6 mt-2">
-              <label for="tanggal" class="mb-1 fw-bold container">tanggal @error('tanggal')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+              <label for="tanggal" class="mb-1 fw-bold container">Tanggal Pelaksanaan @error('tanggal')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
               <input id="tanggal" value="{{old('tanggal')}}" name="tanggal" class="form-control form-sm @error('tanggal')is-invalid @enderror" type="date">
           </div>
           <div class="col-md-6 mt-2">
-              <label for="topik" class="mb-1 fw-bold container">topik @error('topik')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
+              <label for="topik" class="mb-1 fw-bold container">Topik @error('topik')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
               <input id="topik" value="{{old('topik')}}" name="topik" class="form-control form-sm @error('topik') is-invalid @enderror" type="text" placeholder="Masukkan topik materi disini...">
           </div>
           <div class="col-md-6 mt-2">
@@ -42,7 +42,7 @@
             <input id="waktumulai" value="{{old('waktumulai')}}" name="waktumulai" class="form-control form-sm @error('waktumulai')is-invalid @enderror" type="time">
           </div>
           <div class="col-md-6 mt-2">
-              <label for="file" class="mb-1 fw-bold container">File</label>
+              <label for="file" class="mb-1 fw-bold container">File Materi</label>
               <input id="file" name="file" value="{{old('file')}}" class="form-control form-sm" type="file" placeholder="Masukkan  disini...">
           </div>
           <div class="col-md-12 mt-3 mb-2">
