@@ -81,7 +81,7 @@
         <li class="link-bar {{($title=='kelas')?'active':''}}"><a href="/dashboard/kelas" class="bar-item"><i class="fas fa-chalkboard"></i> <span class="link-text">Kelas</span> </a></li>
         <li class="link-bar {{($title=='mapel')?'active':''}}"><a href="/dashboard/mapel" class="bar-item"><i class="fas fa-book"></i> <span class="link-text">Mata Pelajaran</span></a></li>
         <li class="link-bar {{($title=='latihan')?'active':''}}"><a href="{{route('kelola-latihan')}}" class="bar-item"><i class="far fa-file-alt"></i> <span class="link-text">Latihan</span></a></li>
-        <li class="link-bar"><a href="#" class="bar-item"> <span class="link-text">link</span></a></li>
+        <!-- <li class="link-bar"><a href="#" class="bar-item"> <span class="link-text">link</span></a></li> -->
     </ul>
   </div>
 </div>

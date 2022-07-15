@@ -298,7 +298,7 @@
   
   {{-- <footer class="fixed-bottom mt-3 d-none">
   <br><br>
-  <footer class="fixed-bottom mt-3">
+  <footer class=" mt-3">
     <div class="bg p-1 py-1">
       <div class="d-flex mt-1">
         <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>&nbsp;&nbsp;&nbsp;
