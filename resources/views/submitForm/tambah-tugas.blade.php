@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-12 mt-3 mb-2">
                     <label for="editor" class="mb-1 fw-bold container">Deskripsi Tugas @error('deskripsi')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
-                    <textarea class="form-control ck-editor @error('deskripsi')is-invalid @enderror" name="deskripsi" id="editor" cols="20" rows="30">{{ old('deskripsi')}} </textarea>
+                    <textarea class="form-control ck-editor @error('deskripsi')is-invalid @enderror" name="deskripsi" id="edit-w" cols="20" rows="30">{{ old('deskripsi')}} </textarea>
                 </div>
                 <div class="col-md-6 mt-3 ">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah</button>
@@ -27,3 +27,5 @@
         </form>
     </div>
 </div>
+
+

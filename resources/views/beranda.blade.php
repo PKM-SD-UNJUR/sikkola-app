@@ -10,8 +10,8 @@
 
     <h2>Hai, Selamat Datang, {{Auth::user()->name}}</h2>
     <h5>Silakan masuk ke kelas...</h5>
-    <center>
-      <div class="mt-4 main-kelas-area">
+
+      <div class="mt-4 main-kelas-area mt-5">
         <div class="list-card-kelas mb-3" style="max-width: 540px;">
           <div class="row ">
             <div class="col-md-4">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-    </center>
+  </div>
     @endforeach
     @endif
 
