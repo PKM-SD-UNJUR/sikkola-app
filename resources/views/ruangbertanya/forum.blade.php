@@ -138,13 +138,13 @@
                     </small>
                     <div class="ms-auto">
                         @if (Auth::user()->id == $ptr->user->id)
-                        <div class="manage-question" id="navbarNavDarkDropdown">
+                        <div class="manage-question" id="navbarNavLightDropdown">
                             <ul class="navbar-nav">
                               <li class="nav-item dropdown">
                                 <a class="text-secondary" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-chevron-circle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
                                   @if(!$ptr->terjawab)
                                   <li><a class="dropdown-item edit-question fw-bold" href="/kelas/materi/forum/mapel/{{$mapel->id}}/question/{{$ptr->id}}/edit"><i class="fas fa-pen"></i> Edit</a></li>
                                   @endif

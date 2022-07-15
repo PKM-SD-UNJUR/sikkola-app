@@ -54,8 +54,11 @@
 </style>
 <div class="container">
     <br>
+    <div class="fw-bold container">
+        <a href="/kelas/materi/forum/mapel/{{$mapel->id}}/question">Ruang bertanya {{$mapel->nama}}</a> / <a class="text-secondary">Ubah pertanyaan</a>
+    </div>
     <div class="row p-4 container">
-        <div class="col-md-9 rounded qna-area container bg-white p-3">
+        <div class="col-md-12 rounded qna-area container bg-white p-3">
             <div class="container">
                 <table>
                     <tr>
@@ -84,7 +87,7 @@
                         <textarea class="form-control ck-editor" name="pertanyaan" id="edit-q" cols="20" rows="30">{{$ptr->pertanyaan}}</textarea>
                         <br>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-dark text-uppercase fw-bold"><i class="fas fa-paper-plane"></i>&nbsp; Ajukan pertanyaan saya</button>
+                            <button class="btn btn-dark text-uppercase fw-bold"><i class="fas fa-paper-plane"></i>&nbsp; Ubah pertanyaan saya</button>
                         </div>
                     </form>
                     </div>
@@ -92,9 +95,6 @@
                 <br><br>
                 <br><br>
             </div>
-        </div>
-        <div class="col-md-3 container">
-           <p>daftar siswa kelas ini</p>
         </div>
     </div>
 
