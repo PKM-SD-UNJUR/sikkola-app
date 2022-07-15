@@ -22,7 +22,7 @@
                 <a class="list-group-item list-group-item-action @if($tg == "04") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "04"}}" role="tab" aria-controls="list-settings">April</a>
                 <a class="list-group-item list-group-item-action @if($tg == "05") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "05"}}" role="tab" aria-controls="list-home">Mei</a>
                 <a class="list-group-item list-group-item-action @if($tg == "06") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "06"}}" role="tab" aria-controls="list-profile">Juni</a>
-                <a class="list-group-item list-group-item-action @if($tg == "07") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "07"}}" role="tab" aria-controls="list-messages">July</a>
+                <a class="list-group-item list-group-item-action @if($tg == "07") active @endif" id="list-messages-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "07"}}" role="tab" aria-controls="list-messages">Juli</a>
                 <a class="list-group-item list-group-item-action @if($tg == "08") active @endif" id="list-settings-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "08"}}" role="tab" aria-controls="list-settings">Agustus</a>
                 <a class="list-group-item list-group-item-action @if($tg == "09") active @endif" id="list-home-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "09"}}" role="tab" aria-controls="list-home">September</a>
                 <a class="list-group-item list-group-item-action @if($tg == "10") active @endif" id="list-profile-list" href="/kelas/materi/{{$mapel->id}}/{{$tgl = "10"}}" role="tab" aria-controls="list-profile">Oktober</a>
@@ -33,6 +33,13 @@
             <div class="container">
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="januari" role="tabpanel" aria-labelledby="list-profile-list">
+
+                @if(Auth::user()->role=='guru')
+                <div class="tambah my-3">
+                  <a class="btn btn-info fw-bold text-light" href="/kelas/materi/{{$mapel->id}}/create"><i class="fas fa-tasks"></i> TAMBAH MATERI</a>
+                </div>
+                @endif
+
                   @if($materi->count() > 0)
                   @foreach ($materi as $m)
                   <div class="materi-card container mb-3 mt-3">
@@ -47,7 +54,7 @@
                               <h4 class="fw-bold">{{$m->topik}}</h4>
                               <h6 class="text-secondary fw-bold">{{$m->judul}}</h6>
                               <div class="mt-1">
-                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{Carbon\Carbon::parse($m->waktumulai)->format('H:i')}} - {{Carbon\Carbon::parse($m->waktuselesai)->format('H:i')}} WIB</h6>
+                                <h6 class="tx-info"><i class="fas fa-clock"></i> {{Carbon\Carbon::parse($m->waktumulai)->format('H:i')}} - {{Carbon\Carbon::parse($m->waktuselesai)->format('H:i')}}</h6>
                               </div>
                               <div class="py-2 d-flex justify-content-start">
                                 @if ($m->video != null)
@@ -57,16 +64,16 @@
 
                                 {{--modal video--}}
                                   <div class="modal fade" id="video{{ $m->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-fullscreen-sm-down">
                                     <div class="modal-content modalbl">
                                         <div class="modal-header">
-                                          <img src="{{ asset('gambar/robotvideo.gif') }}" style="max-width: 60px;" alt=""> 
+                                          <img src="../../../../gambar/robotvideo.gif" style="max-width: 100px;" alt=""> 
                                         <h4 class="modal-title" id="exampleModalLabel">Tonton Video Yukk!</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="container col-12">
-                                          <x-embed url="{{$m->video}}" aspect-ratio="4:3" />
-                                          {{-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$m->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+                                        <div class="container col-12 text-center mt-5">
+                                          <x-embed url="{{$m->video}}" />
+                                          {{-- <iframe src="https://www.youtube.com/embed/{{$m->vidio}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
                                         </div>
                                         <br>
                                     </div>
@@ -100,13 +107,15 @@
                         </div>
                         <div class="col-md-1">
 
+                        @if(Auth::user()->role == 'guru')
                           <div class="p-3 mb-2 bg-white menu-materi-card">
-                            <a class="fw-bold " href="/kelas/materi/{{$mapel->id}}/{{$m->id}}/edit"><i class="fas fa-edit"></i> EDIT</a>
+                            <a class="fw-bold " href="/kelas/materi/{{$mapel->id}}/{{$m->id}}/edit"><i class="fas fa-edit"></i> UBAH</a>
                           </div>
 
                           <div class="p-3 bg-white  menu-materi-card">
                             <a class="fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#delete{{$m->id}}"><i class="fas fa-trash"></i> HAPUS</a>
                           </div>
+                        @endif
 
                           {{--modal hapus--}}
                             <div class="modal fade" id="delete{{$m->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,7 +157,7 @@
                     @else
                     <div class="py-5">
                       <h1 class="text-center fw-bold text-secondary">
-                       &#128012; Belom ada materi pada bulan ini
+                       &#128012; Belum ada materi pada bulan ini
                       </h1>
                     </div>
                     @endif

@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('content')
-<br>
+<br><br><br>
 <div class="mapelcaption container" style="width: max-content; padding: 10px; margin-top: 5px; border-radius: 5px; background-image: url('../gambar/chalkboard.jpg');">
     <h2 class="text-center">DAFTAR <img src="{{asset('gambar/logo2.png')}}" width="50" alt=""> SIKKOLA</h2><br>
     <div class="container">
@@ -10,7 +10,7 @@
             <div class="row mb-3">
                 <label for="name" class="col-md-4 col-form-label text-md-start">{{ __('Nama') }}</label>
 
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                     @error('name')
@@ -24,7 +24,7 @@
             <div class="row mb-3">
                 <label for="email" class="col-md-4 col-form-label text-md-start">{{ __('Email') }}</label>
 
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                     @error('email')
@@ -38,7 +38,7 @@
             <div class="row mb-3">
                 <label for="kelas" class="col-md-4 col-form-label text-md-start">{{ __('Kelas') }}</label>
 
-                <div class="col-md-6">
+                <div class="col-md-8">
 
                     <?php $kelas = DB::table('kelas')->get() ?>
 
@@ -60,7 +60,7 @@
             <div class="row mb-3">
                 <label for="password" class="col-md-4 col-form-label text-md-start">{{ __('Password') }}</label>
 
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                     @error('password')
@@ -74,7 +74,7 @@
             <div class="row mb-3">
                 <label for="password-confirm" class="col-md-4 col-form-label text-md-start">{{ __('Konfirmasi Password') }}</label>
 
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
@@ -83,7 +83,7 @@
             <div class="text-center">
                 <center><button type="submit" class="btn btn tombol fw-bold">Daftar</button></center>
                 <hr>
-                <small class="text-center">Telah mempunyai akun?</small>
+                <small class="text-center">Anda telah mempunyai akun?</small>
                 <br>
                 <a href="/login" class="text-center text-light">Masuk di sini !</a>
             </div>

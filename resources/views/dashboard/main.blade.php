@@ -94,16 +94,20 @@
     <div class="container">
         <div class="d-flex mt-4">
             <div>
-               <h3 class="fw-bold text-secondary text-uppercase">kelola kelas</h3>
+                @yield('top-title')
             </div>
-            <div class="ms-auto">
+            
+            <div class="ms-auto d-flex ">
+                <a class="btn btn-info mx-5 ms-auto fw-bold text-light" href="/"><i class="fas fa-user-graduate"></i> Lihat Halaman Siswa</a>
+
+        
                 <div class="dropdown">
                     <a class="btn btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="far fa-user"></i> Togar marolop
+                        <i class="far fa-user"></i> {{Auth::user()->name}}
                     </a>
                   
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>&nbsp;Keluar</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
@@ -111,6 +115,10 @@
             </div>
         </div>
     </div>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
 
     @yield('content')
 </div>

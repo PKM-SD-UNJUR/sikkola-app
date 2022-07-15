@@ -1,5 +1,12 @@
 @extends('dashboard.main')
 
+
+@section('top-title')
+<h3 class="fw-bold text-secondary text-uppercase">kelola latihan</h3>
+@endsection
+
+
+
 @section('content')
 <div class="container">
     <div>

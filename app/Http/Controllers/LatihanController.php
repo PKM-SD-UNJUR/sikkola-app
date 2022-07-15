@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\latihan;
 use App\Models\kelas;
 use App\Models\mapel;
+use App\Models\materi;
 use App\Http\Requests\StorelatihanRequest;
 use App\Http\Requests\UpdatelatihanRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LatihanController extends Controller
 {
@@ -16,19 +18,23 @@ class LatihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
-        $latihan = latihan::with('kelas','mapel')->get();
-        $mapel = mapel::where('id',$request->id)->with('kelas','latihan')->get();
-        return view('dashboard-layout.latihan.index',compact('latihan','mapel'),['title'=>'latihan']);
     }
 
-    public function kelolaLatihan() {
-        $latihan = latihan::with('kelas','mapel')->get();
-        $kelas = kelas::with('latihan','mapel')->get();
-        $mapel = mapel::with('kelas','latihan')->get();
-        return view('dashboard-layout.latihan.kelola-latihan',compact('latihan','kelas','mapel'),['title'=>'latihan']);
+
+    public function latihanList(mapel $mapel, $tgl) {
+        $materi = materi::where('mapel_id',$mapel->id)->whereMonth('tanggal',$tgl)->get();
+
+        $latihan = latihan::where('mapel_id',$mapel->id)->whereMonth('waktumulai',$tgl)->get();
+
+        return view('latihan.mapel',[
+            'mapel' => $mapel,
+            'materi' => $materi,
+            'latihan' => $latihan,
+            'tg' => $tgl
+        ]);
     }
 
     /**
@@ -36,10 +42,11 @@ class LatihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(mapel $mapel)
     {
-        $mapel = mapel::where('id',$request->id)->with('kelas','latihan')->get();
-        return view('dashboard-layout.latihan.create', ['data' => new latihan, 'mapel' => $mapel,'title'=>'latihan']);
+        return view('latihan.tambah-latihan',[
+            'mapel' => $mapel
+        ]);
     }
 
     /**
@@ -48,9 +55,9 @@ class LatihanController extends Controller
      * @param  \App\Http\Requests\StorelatihanRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, mapel $mapel)
     {
-        $request->validate([
+        $validasi = [
             'judul' => 'required',
             'waktumulai' => 'required',
             'waktuselesai' => 'required',
@@ -58,20 +65,19 @@ class LatihanController extends Controller
             'keterangan' => 'required',
             'mapel_id' => 'required',
             'kelas_id' => 'required'
-        ]);
+        ];
 
 
-        $latihan = new latihan();
-        $latihan->judul = $request->judul;
-        $latihan->waktumulai = $request->waktumulai;
-        $latihan->waktuselesai = $request->waktuselesai;
-        $latihan->link = $request->link;
-        $latihan->keterangan = $request->keterangan;
-        $latihan->kelas_id = $request->kelas_id;
-        $latihan->mapel_id = $request->mapel_id;
-        $latihan->save();
 
-        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil dibuat');
+        $data = $request->validate($validasi);
+
+        $back = $mapel->id;
+        $tanggal = \Carbon\Carbon::parse($data['waktumulai'])->format('m');
+
+        latihan::create($data);
+
+    
+        return redirect("/kelas/latihan/$back/$tanggal")->with('success','Latihan berhasil dibuat');
     }
 
     /**
@@ -91,11 +97,14 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, Request $request)
+    public function edit($id, latihan $latihan)
     {
-        $latihan = latihan::find($id);
-        $mapel = mapel::where('id',$request->id)->with('kelas','latihan')->get();
-        return view('dashboard-layout.latihan.edit', compact('latihan','mapel'), ['id'=>$request->mapel_id,'title'=>'latihan']);
+        $mapel = mapel::where('id',$id)->first();
+
+        return view('latihan.ubah-latihan',[
+            'mapel' => $mapel,
+            'latihan' => $latihan
+        ]);
 
     }
 
@@ -106,9 +115,9 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request)
+    public function update(Request $request, $id, latihan $latihan)
     {
-        $request->validate([
+        $validasi = [
             'judul' => 'required',
             'waktumulai' => 'required',
             'waktuselesai' => 'required',
@@ -116,19 +125,19 @@ class LatihanController extends Controller
             'keterangan' => 'required',
             'mapel_id' => 'required',
             'kelas_id' => 'required'
-        ]);
+        ];
 
-        $latihan = latihan::find($id);
-        $latihan->judul = $request->judul;
-        $latihan->waktumulai = $request->waktumulai;
-        $latihan->waktuselesai = $request->waktuselesai;
-        $latihan->link = $request->link;
-        $latihan->keterangan = $request->keterangan;
-        $latihan->kelas_id = $request->kelas_id;
-        $latihan->mapel_id = $request->mapel_id;
-        $latihan->save();
+        $mapel = mapel::where("id",$id)->first();
 
-        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil diubah');
+        $data = $request->validate($validasi);
+
+        $back = $id;
+        $tanggal = \Carbon\Carbon::parse($data['waktumulai'])->format('m');
+        // return $tanggal;
+
+        latihan::where('id',$latihan->id)->update($data);
+
+        return redirect("/kelas/latihan/$back/$tanggal")->with('success','Latihan berhasil diubah');
     }
 
     /**
@@ -137,9 +146,9 @@ class LatihanController extends Controller
      * @param  \App\Models\latihan  $latihan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy($id, latihan $latihan)
     {
-        latihan::find($id)->delete();
-        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil dihapus');
+        latihan::destroy($latihan->id);
+        return redirect("/kelas/latihan/$id/01")->with('success','Latihan berhasil dihapus');
     }
 }

@@ -16,11 +16,14 @@ return new class extends Migration
         Schema::create('submit_form', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->time('deadline');
+            $table->datetime('deadline');
             $table->text('deskripsi');
 
-            $table->unsignedBigInteger('latihan_id');
-            $table->foreign('latihan_id')->references('id')->on('latihan');
+            $table->unsignedBigInteger('kelas_id');
+            $table->foreign('kelas_id')->references('id')->on('kelas');
+
+            $table->unsignedBigInteger('mapel_id');
+            $table->foreign('mapel_id')->references('id')->on('mapels');
 
             $table->timestamps();
         });

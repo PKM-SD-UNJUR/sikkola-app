@@ -5,7 +5,7 @@
     <h4>Tambah Materi</h4>
     <small>{{$mapel->kelas->nama}} : {{$mapel->nama}}</small>
 <div class="container">
-<a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="/kelas/materi/{{$mapel->id}}/{{\Carbon\Carbon::now()->format('m')}}">Kembali</a>
+<a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="/kelas/latihan/{{$mapel->id}}/{{\Carbon\Carbon::now()->format('m')}}"><i class="fas fa-angle-left"></i> Kembali</a>
 </div>
 </div>
 
@@ -51,7 +51,7 @@
           </div>
           <div class="col-md-6 mt-3 ">
               <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah</button>
-              <button type="reset" class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+              <a type="reset" class="btn btn-secondary" href="back()"><i class="fas fa-angle-double-left"></i> Batal</a>
           </div>
         </div>
   </form>

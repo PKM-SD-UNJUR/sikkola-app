@@ -7,8 +7,9 @@ use Illuminate\Validation\Validator;
 use App\Models\mapel;
 use App\Models\kelas;
 use App\Models\materi;
+use App\Models\latihan;
 use Alert;  
-use Carbon;
+use Carbon\Carbon;
 use Storage;
 
 class materiController extends Controller
@@ -27,10 +28,12 @@ class materiController extends Controller
 
         $materi = materi::where('mapel_id',$mapel->id)->whereMonth('tanggal',$tgl)->get();
 
+        $latihan = latihan::where('mapel_id',$mapel->id)->whereMonth('waktumulai',$tgl)->get();
 
         return view('materi.mapel',[
             'mapel' => $mapel,
             'materi' => $materi,
+            'latihan' => $latihan,
             'tg' => $tgl
         ]);
     }
@@ -57,23 +60,9 @@ class materiController extends Controller
             'file' => 'nullable',
             'deskripsi' => 'nullable',
             'mapel_id'=>'required',
-            'kelas_id'=>'required',
+            'kelas_id'=>'required'
         ];
 
-        // return $request;
-
-        // $data = $this->validate($request, [
-        //     'topik'=>'required|min:3',
-        //     'tanggal'=>'required',
-        //     'Judul'=>'required|5',
-        //     'waktumulai'=>'required',
-        //     'waktuselesai'=>'required',
-        //     'video' => 'nullable',
-        //     'file' => 'nullable',
-        //     'deskripsi' => 'nullable',
-        //     'mapel_id'=>'required',
-        //     'kelas_id'=>'required',
-        // ]);
 
         $data = $request->validate($validasi);
 
@@ -179,7 +168,7 @@ class materiController extends Controller
 
         materi::where('id',$materi->id)->update($data);
 
-        return redirect("/kelas/materi/$back/$tanggal")->with('success','Materi berhasil dibubah');
+        return redirect("/kelas/materi/$back/$tanggal")->with('success','Materi berhasil diubah');
     }
 
     /**

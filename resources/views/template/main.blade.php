@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script>
+    Dropzone.options.fileuploaded = {
+      maxFileSize: 1
+    }
+  </script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;800&display=swap');
@@ -167,6 +174,26 @@
       width: 0px;
     }
 
+    .line-latihan-card {
+      margin: auto;
+      border-right: 8px solid black;
+      border-left: 0;
+      border-color: rgba(248, 228, 200, 1);
+      border-style: dashed;
+      height: 80%;
+      width: 0px;
+    }
+
+    .line-tugas-card {
+      margin: auto;
+      border-right: 8px solid black;
+      border-left: 0;
+      border-color: rgba(96, 192, 231, 0.6);
+      border-style: dashed;
+      height: 80%;
+      width: 0px;
+    }
+
     .card-materi-desc {
       border-radius: 20px;
       box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
@@ -240,20 +267,23 @@
         <i class="fas fa-bars"></i>
       </button>
 
+      @if(Auth::user()->role == 'guru')
+      <a class="btn btn-info ms-auto mx-5 text-light fw-bold" href="/dashboard"><i class="fas fa-chalkboard-teacher"></i> Lihat Halaman Guru</a>
+      @endif
+
       <div class="dropdown mr-5">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-user"></i>&nbsp; {{ Auth::user()->name }} &nbsp;&nbsp;
+          <i class="fas fa-user"></i>&nbsp; {{ Auth::user()->name }} &nbsp;&nbsp;
         </button>
         <ul class="dropdown-menu  mt-2" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="{{ route('profil') }}"><i class="fas fa-address-card"></i>&nbsp;Profil</a></li>
           <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>&nbsp;Keluar</a></li>
-          </form>
         </ul>
       </div>
     </div>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
+      @csrf
     </form>
 
   </nav>
@@ -265,16 +295,21 @@
   </div>
 
   <br><br>
-  <footer class="fixed-bottom mt-3 d-none">
+  
+  {{-- <footer class="fixed-bottom mt-3 d-none">
+  <br><br>
+  <footer class="fixed-bottom mt-3">
     <div class="bg p-1 py-1">
       <div class="d-flex mt-1">
-      <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>&nbsp;&nbsp;&nbsp;
-        
-      <p class="text-center text-light mt-1">Copyright © <?= date("Y"); ?> | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>&nbsp;&nbsp;&nbsp;
+        <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>&nbsp;&nbsp;&nbsp;
+
+        <p class="text-center text-light mt-1">Copyright © <?= date("Y"); ?> | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>&nbsp;&nbsp;&nbsp;
         <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>
       </div>
     </footer>
   
+      <br><br> --}}
+
       <br><br>
         <footer class=" mt-4">
           <div class="bg p-1 py-3">
@@ -287,18 +322,22 @@
         </footer>
 
     @include('sweetalert::alert')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script>
-          $(document).ready(function() {
-            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+      <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+      <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script>
+        ClassicEditor
+          .create(document.querySelector('#editor'))
+          .catch(error => {
+            console.error(error);
           });
 
-          ClassicEditor
-          .create( document.querySelector( '#editor' ) )
-          .catch( error => {
-              console.error( error );
-          } );
-    </script>
-  </body>
+        $(document).ready(function() {
+          $("body").tooltip({
+            selector: '[data-toggle=tooltip]'
+          });
+        });
+      </script>
+</body>
+
 </html>
