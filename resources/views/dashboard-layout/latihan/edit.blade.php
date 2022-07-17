@@ -8,15 +8,15 @@
 
 @section('content')
 <div class="container">
-@foreach($mapel->take(1) as $mp)
+    @foreach($mapel->take(1) as $mp)
     <div>
         <a class="fw-bold tx-info bar-item" href="/dashboard/kelas">Kelas</a> / <span class="text-secondary">Ubah Latihan {{$mp->nama }} {{$mp->kelas->nama}}</span>
     </div>
     <br>
     <div class="py-3 mt-1 bg-white">
-        <h4>Ubah Latihan {{$mp->nama }} {{$mp->kelas->nama}}</h4>
+        <h4 class="fw-bold text-secondary text-uppercase">Ubah Latihan {{$mp->nama }} {{$mp->kelas->nama}}</h4>
         <br>
-        <form action="{{ route('kelola.update',[$latihan->id,'id'=>$mp->id]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('kelolaLatihan.update',[$latihan->id,'id'=>$mp->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="col-md-10">
@@ -62,7 +62,7 @@
                 <br>
                 <div>
                     <label for="">Keterangan</label>
-                    <textarea name="keterangan" type="text" cols="40" class="form-control">{{$latihan->keterangan}}</textarea>
+                    <textarea name="keterangan" type="text" cols="30" rows="10" class="form-control">{{$latihan->keterangan}}</textarea>
                 </div>
                 @error("keterangan")
                 <div>
@@ -87,12 +87,15 @@
                 </div>
                 @enderror
 
-                <div class="mt-3 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                <br>
+                <div class="d-flex mt-3 mb-3 justify-content-between">
+                    <a style="width: 40%" href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button style="width: 40%" type="submit" class="btn btn-success ">Simpan</button>
                 </div>
             </div>
         </form>
     </div>
-@endforeach
+    @endforeach
 </div>
 @endsection

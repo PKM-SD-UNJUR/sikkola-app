@@ -7,6 +7,7 @@ use App\Models\kelas;
 use Illuminate\Http\Request;
 use Storage;
 use Alert;
+use App\Models\latihan;
 
 class dashboardMapelController extends Controller
 {
@@ -76,7 +77,7 @@ class dashboardMapelController extends Controller
 
         mapel::create($data);
 
-        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata pelajaran berhasil dibuat');
+        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata Pelajaran Berhasil Dibuat!');
     }
 
     /**
@@ -135,7 +136,7 @@ class dashboardMapelController extends Controller
 
         mapel::where('id', $mapel->id)->update($data);
 
-        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Kelas berhasil diubah');
+        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata Pelajaran Berhasil Diubah!');
     }
 
     /**
@@ -146,11 +147,16 @@ class dashboardMapelController extends Controller
      */
     public function destroy(mapel $mapel)
     {
-        // return request('kelas_id');
         $data = $mapel->id;
-        
+
+        $latihan = latihan::where('mapel_id',$data)->count();
+
         $kelas = request('kelas_id');
-        mapel::destroy($data);
-        return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata pelajaran berhasil dihapus');
+        if($latihan == 0) {
+            mapel::destroy($data);
+            return redirect("/dashboard/mapel/kelas/$kelas")->with('success', 'Mata Pelajaran Berhasil Dihapus!');
+        } else {
+            return redirect("/dashboard/mapel/kelas/$kelas")->with('warning', 'Mata Pelajaran Gagal Dihapus, Mata Pelajaran Sedang Digunakan!');
+        }
     }
 }

@@ -18,11 +18,9 @@
     </div>
     @endif
 
-    <div class="mt-5">
-        <div><a class="btn btn-primary fw-bold text-uppercase" href="/dashboard/kelas/create"> + buat mata pelajaran </a></div>
-    </div>
+
     <br>
-    <div class="py-3 bg-white">
+    <div class="py-3 bg-white mt-2">
 
         <div class="container row">
 

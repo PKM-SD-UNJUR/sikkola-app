@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                    <a href="{{route('kelola.index',['id'=>$m->id])}}" class="btn btn btn-warning text-uppercase fw-bold text-sm"><small><i class="fas fa-cog"></i> kelola latihan {{$m->nama}}</small></a>
+                                    <a href="{{route('kelolaLatihan.index',['id'=>$m->id])}}" class="btn btn btn-warning text-uppercase fw-bold text-sm"><small><i class="fas fa-cog"></i> kelola latihan {{$m->nama}}</small></a>
                             </div>
                         </div>
                         @endforeach
