@@ -281,7 +281,14 @@ class soalController extends Controller
      */
     public function destroy(Request $request, quiz $quiz, soal $soal)
     {
-        soal::destroy($soal->id);
-        return redirect("/kelas/materi/forum/mapel/$request->mapel/quiz/$quiz->id")->with('success', 'Soal berhasil dihapus');
+    
+        $jawaban = jawabanQuiz::where('soal_id',$soal->id)->count();
+
+        if($jawaban == 0) {
+            soal::destroy($soal->id);
+            return redirect("/kelas/materi/forum/mapel/$request->mapel/quiz/$quiz->id")->with('success', 'Soal berhasil dihapus');
+        } else {
+            return redirect("/kelas/materi/forum/mapel/$request->mapel/quiz/$quiz->id")->with('warning', 'Soal Gagal Dihapus, Soal Sedang Digunakan!');
+        }
     }
 }
