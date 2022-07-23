@@ -242,7 +242,7 @@
       <div class="container bg-white main-page p-4">
         <div class="">
           <div class="">
-            <h4 class=" container fw-bold">SOAL {{Session::get('nomor')}} @if ($jawabanku != null && $jawabanku->soal_id == $soal->id)  {{$jawabanku->status}}&nbsp;{{$jawabanku->skor}} @endif</h4>
+            <h4 class=" container fw-bold">SOAL {{Session::get('nomor')}} </h4>
           </div>
           <hr>
           <br>

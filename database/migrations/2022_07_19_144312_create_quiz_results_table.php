@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('quiz_results', function (Blueprint $table) {
             $table->id();
-            $table->double('jumlah');
             $table->datetime('submit');
+            $table->double('nilai');
 
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes');   
