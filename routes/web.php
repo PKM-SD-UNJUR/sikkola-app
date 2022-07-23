@@ -13,6 +13,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\forumController;
 use App\Http\Controllers\pertanyaanController;
 use App\Http\Controllers\jawabanController;
+use App\Http\Controllers\quizController;
+use App\Http\Controllers\soalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +93,26 @@ Route::middleware('RoleUser:guru,siswa')->group(function () {
     Route::post('/kelas/materi/forum/{id}/{pertanyaan:id}/{jwb}/delete', [jawabanController::class, 'destroy']);
 
     Route::resource('/kelas/materi/forum/question.jawab', jawabanController::class); 
-    // /kelas/materi/forum/mapel/1/kelas/materi/forum/accept/mapel/1/question/3
+
+
+    // QUIZ 
+
+    Route::resource('/kelas/materi/forum/mapel.quiz', quizController::class); 
+
+    Route::resource('/kelas/materi/forum/quiz.soal', soalController::class); 
+
+    Route::get('/kelas/materi/forum/quiz/soal/{quiz:id}/review', [soalController::class, 'review']); 
+
+
+
+
+    // Route::get('/kelas/materi/forum/quiz/quiz/soal/review', [soalController::class, 'review']); 
+
+    Route::post('/kelas/materi/forum/quiz/question/{soal:id}', [soalController::class, 'question']); 
+
+    Route::post('/kelas/materi/forum/quiz/question/{soal:id}/next', [soalController::class, 'next']); 
+
+    Route::post('/kelas/materi/forum/quiz/question/{quiz:id}/submit', [soalController::class, 'submit']); 
 
 
 
@@ -144,6 +165,8 @@ Route::middleware('RoleUser:guru,siswa')->group(function () {
 Route::middleware('RoleUser:guru')->group(function () {
 
 
+
+    
     // Route::get('/kelas/{kela:id}', das);
 
     Route::get('/dashboard', [dashboardKelasController::class, 'index']);
@@ -155,6 +178,12 @@ Route::middleware('RoleUser:guru')->group(function () {
     Route::get('/dashboard/mapel/kelas/{kela:id}', [dashboardMapelController::class, 'listMapel']);
 
     Route::get('/dashboard/mapel/{kela:id}/create', [dashboardMapelController::class, 'create']);
+
+    // QUIZ
+    
+    Route::post('/kelas/materi/forum/quiz/nilai/{id}/update', [quizController::class, 'updateNilai']); 
+
+    Route::post('/kelas/materi/forum/mapel/{id}/quiz/{quiz:id}/apply', [quizController::class, 'apply']); 
 
 
     // Latihan

@@ -178,8 +178,10 @@
   <style>
     .disscussion-forum-button{
       width: max-content;
-      /* background-color: black; */
-      /* overflow: hidden; */
+    }
+
+    .quiz-button{
+      width: max-content;
     }
 
     .disscussion-forum-button .btn-chat-area{
@@ -189,7 +191,18 @@
       padding: 16px;
       background-color: rgb(0, 43, 135);
       border-radius: 100%;
-    
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+      transition: 0.3s ease;
+    }
+
+    .quiz-button .btn-chat-area{
+      /* border: 1px solid #AF601A; */
+      max-width: 100px;
+      max-height: 100px;
+      padding: 16px;
+      background-color: rgb(0, 43, 135);
+      border-radius: 100%;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
       transition: 0.3s ease;
     }
 
@@ -201,15 +214,15 @@
        box-shadow: rgba(48, 155, 255, 0.686) 0px 10px 50px;
     }
     .btn-chat-area:hover img{
-      /* box-shadow: rgba(48, 155, 255, 0.686) 0px 10px 50px; */
       transform: scale(1.50);
-      /* padding: 10px; */
 
     }
 
-    
-
     .disscussion-forum-button img{
+      width: 100%;
+    }
+
+    .quiz-button img{
       width: 100%;
     }
 
@@ -231,16 +244,28 @@
   </style>
 
 
-<div class="d-flex justify-content-end fixed-bottom">
-  <div class="forum-btn ">
-    <div class="disscussion-forum-button">
-      <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Ruang bertanya">
-      <div class="btn-chat-area" id="btn-chat-area">
-        <a class="btn-forum"  href="/kelas/materi/forum/mapel/{{$mapel->id}}/question"><img src="{{asset('/icon/chat.png')}}" alt=""></a>
+  <div class="d-flex justify-content-end fixed-bottom">
+
+    <div class="forum-btn ">
+      <div class="disscussion-forum-button">
+        <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Ruang bertanya">
+        <div class="btn-chat-area" id="btn-chat-area">
+          <a class="btn-forum"  href="/kelas/materi/forum/mapel/{{$mapel->id}}/question"><img src="{{asset('/icon/chat.png')}}" alt=""></a>
+        </div>
+      </div>
       </div>
     </div>
-    </div>
-  </div>
-</div>
 
+    <div class="forum-btn ">
+      <div class="quiz-button">
+        <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Quiz">
+        <div class="btn-chat-area bg-warning" id="btn-chat-area">
+          <a class="btn-forum"  href="/kelas/materi/forum/mapel/{{$mapel->id}}/quiz"><img src="{{asset('/icon/test.png')}}" alt=""></a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+  
 @endsection

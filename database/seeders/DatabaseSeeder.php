@@ -22,6 +22,13 @@ class DatabaseSeeder extends Seeder
             'gambar' => '/img/kelas1.png'
         ]);
 
+        \App\Models\mapel::create([
+            'nama' => 'matematika',
+            'deskripsi' => 'ngitung yok wee',
+            'gambar' => '/img/kelas1.png',
+            'kelas_id' => 1
+        ]);
+
         \App\Models\kelas::create([
             'nama' => 'kelas bot 2',
             'deskripsi' => 'mari bergabung ke kelas ini yooo',

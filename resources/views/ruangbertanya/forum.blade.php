@@ -146,7 +146,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
                                   @if(!$ptr->terjawab)
-                                  <li><a class="dropdown-item edit-question fw-bold" href="/kelas/materi/forum/mapel/{{$mapel->id}}/question/{{$ptr->id}}/edit"><i class="fas fa-pen"></i> Edit</a></li>
+                                    <li><a class="dropdown-item edit-question fw-bold" href="/kelas/materi/forum/mapel/{{$mapel->id}}/question/{{$ptr->id}}/edit"><i class="fas fa-pen"></i> Edit</a></li>
                                   @endif
                                   <li><a class="dropdown-item delete-question fw-bold" data-bs-toggle="modal" data-bs-target="#delete{{$ptr->id}}"><i class="fas fa-trash"></i> Hapus</a></li>
                                 </ul>
