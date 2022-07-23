@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardKelasController;
 use App\Http\Controllers\dashboardLatihanController;
 use App\Http\Controllers\dashboardMapelController;
-use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\berandaController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\materiController;
 use App\Http\Controllers\SubmitFormController;
