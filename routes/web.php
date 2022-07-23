@@ -139,22 +139,6 @@ Route::middleware('RoleUser:guru,siswa')->group(function () {
 
     Route::post('/kelas/submission/{mapel:id}/{id}/update', [SubmissionController::class, 'update']);
 
-    // Route::get('/kelas', function () {
-    //     return view('kelas');
-    // });
-
-    // // Route::get('/detail', function () {
-    // //     return view('mapel');
-    // // });
-
-    // Route::get('/submit', function () {
-    //     return view('submission');
-    // });
-
-    // Route::get('/latihan', function () {
-    //     return view('latihan');
-    // });
-
     Route::get('/forum',[forumController::class, 'index']);
 
 
@@ -186,13 +170,21 @@ Route::middleware('RoleUser:guru')->group(function () {
     Route::post('/kelas/materi/forum/mapel/{id}/quiz/{quiz:id}/apply', [quizController::class, 'apply']); 
 
 
-    // Latihan
+    // LATIHAN
     Route::get('/dashboard/latihan', [dashboardLatihanController::class, 'kelolaLatihan']);
 
     Route::prefix('dashboard/latihan')->group(function () {
         Route::get('/', [dashboardLatihanController::class, 'kelolaLatihan'])->name('kelola-latihan');
-        Route::resource('kelola', dashboardLatihanController::class);
+        Route::resource('kelolaLatihan', dashboardLatihanController::class);
     });
+
+    // KELOLA PENGGUNA
+    Route::prefix('dashboard/pengguna')->group(function () {
+        Route::get('/', [UserController::class, 'statistik'])->name('kelola-pengguna');
+        Route::resource('kelola', UserController::class);
+    });
+
+    
 });
 
 Auth::routes();

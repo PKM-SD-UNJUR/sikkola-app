@@ -4,7 +4,7 @@
     <input type="hidden" name="submitForm_id" value="{{$m->id}}">
 
 
-    @if (auth()->user()->role=="siswa")
+    @if (Auth()->user()->role=="siswa")
 
     <input id="file" name="file" class="form-control form-sm dropzone @error('file')is-invalid @enderror" type="file">
     <div class="dz-default dz-message @error('file')is-invalid @enderror">
@@ -13,9 +13,12 @@
         @error('file')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror
     </div>
     <br>
+    @if($submission->where('submitForm_id',$m->id)->where('user_id',Auth::user()->id)->count() == 0)
     <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-upload"></i> Kumpulkan Tugas</button>
+    @else
+    <h6 class="fw-bold text-success">Tugas Anda Telah Terkirim</h6>
+    @endif
 
-    &nbsp;&nbsp;&nbsp;
     @endif
 
 </form>

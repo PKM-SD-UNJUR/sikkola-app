@@ -86,7 +86,7 @@ class dashboardLatihanController extends Controller
         $latihan->mapel_id = $request->mapel_id;
         $latihan->save();
 
-        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil dibuat');
+        return redirect()->route('kelolaLatihan.index',['id'=>$request->mapel_id])->with('success', 'Latihan Berhasil Dibuat!');
     }
 
     /**
@@ -143,7 +143,7 @@ class dashboardLatihanController extends Controller
         $latihan->mapel_id = $request->mapel_id;
         $latihan->save();
 
-        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil diubah');
+        return redirect()->route('kelolaLatihan.index',['id'=>$request->mapel_id])->with('success', 'Latihan Berhasil Diubah!');
     }
 
     /**
@@ -155,6 +155,7 @@ class dashboardLatihanController extends Controller
     public function destroy($id, Request $request)
     {
         latihan::find($id)->delete();
-        return redirect()->route('kelola.index',['id'=>$request->mapel_id])->with('success', 'Latihan berhasil dihapus');
+        
+        return redirect()->route('kelolaLatihan.index',['id'=>$request->mapel_id])->with('success', 'Latihan Berhasil Dihapus!');
     }
 }

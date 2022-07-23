@@ -294,32 +294,20 @@
   @yield('container')
   </div>
 
-  <br><br>
   
-  {{-- <footer class="fixed-bottom mt-3 d-none">
+
   <br><br>
-  <footer class=" mt-3">
-    <div class="bg p-1 py-1">
-      <div class="d-flex mt-1">
+  <footer class="mt-3">
+    <div class="bg">
+      <div class="d-flex mt-1 py-3">
         <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>&nbsp;&nbsp;&nbsp;
 
         <p class="text-center text-light mt-1">Copyright © <?= date("Y"); ?> | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>&nbsp;&nbsp;&nbsp;
         <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>
       </div>
     </footer>
-  
-      <br><br> --}}
 
-      <br><br>
-        <footer class=" mt-4">
-          <div class="bg p-1 py-3">
-              <div class="d-flex mt-2">
-                <a href="https://www.del.ac.id/"><img class="" style="width: 48px;" src="{{asset('gambar/itdel.png')}}" alt=""></a>&nbsp;&nbsp;&nbsp;
-                <a class="footer d-flex link-light" href="#"><img src="{{asset('gambar/logo2.png')}}" width="50" alt=""></a>
-              </div>
-            <p class="text-center text-light mt-1">Copyright &copy;2021 | Program Pengabdian Masyarakat <a class="" href="https://www.del.ac.id/" style="color: yellow">Institut Teknologi Del</a></p>
-          </div>
-        </footer>
+     
 
     @include('sweetalert::alert')
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

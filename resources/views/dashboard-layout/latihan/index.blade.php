@@ -23,10 +23,10 @@
 </div>
 @endif --}}
 
-<h3 class="fw-bold text-secondary text-uppercase mt-5">Kelola Mata Pelajaran {{$mp->nama }} {{$mp->kelas->nama}}</h3>
+<h4 class="fw-bold text-secondary text-uppercase mt-5">Kelola Mata Pelajaran {{$mp->nama }} {{$mp->kelas->nama}}</h4>
 
 <div class="mt-5">
-    <div><a class="btn btn-primary fw-bold text-uppercase" href="{{route('kelola.create',['id'=>$mp->id])}}"> + buat latihan </a></div>
+    <div><a class="btn btn-primary fw-bold text-uppercase" href="{{route('kelolaLatihan.create',['id'=>$mp->id])}}"> + buat latihan </a></div>
 </div>
 
 <br>
@@ -37,7 +37,7 @@
             <th>Judul</th>
             <th>Waktu Mulai</th>
             <th>Waktu Selesai</th>
-            <th>Status</th>
+            <th>Link Tugas</th>
             <th>Aksi</th>
         </tr>
         @foreach ($latihan->where('mapel_id',$mp->id)->where('kelas_id',$mp->kelas_id) as $lth)
@@ -46,18 +46,18 @@
             <td>{{$lth->judul}}</a></td>
             <td>{{$lth->waktumulai}}</td>
             <td>{{$lth->waktuselesai}}</td>
-            <td>Status</td>
+            <td><a href="{{$lth->link}}" target="_blank">{{$lth->link}}</a></td>
             <td>
                 <div class="d-flex">
                     <a class="btn-outline-success btn btn-sm" href="#"><i class="fas fa-eye"></i></a>&nbsp;
 
-                    <a class="btn-outline-warning btn btn-sm" href="{{route('kelola.edit',[$lth->id,'id'=>$mp->id])}}"><i class=" fas fa-edit"></i></a>&nbsp;
+                    <a class="btn-outline-warning btn btn-sm" href="{{route('kelolaLatihan.edit',[$lth->id,'id'=>$mp->id])}}"><i class=" fas fa-edit"></i></a>&nbsp;
                     
 
-                    <form action="{{route('kelola.destroy',$lth->id)}}" method="post">
+                    <form action="{{route('kelolaLatihan.destroy',$lth->id)}}" method="post">
                         @method('delete')
                         @csrf
-                        <button class="btn-outline-danger btn btn-sm" onclick="return confirm('Apakah kamu yakin ingin menghapus latihan ini?');"><i class="fas fa-trash-alt"></i></button>
+                        <button class="btn-outline-danger btn btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus latihan ini?');"><i class="fas fa-trash-alt"></i></button>
                         <input type="hidden" name="mapel_id" value="{{$mp->id}}">
                     </form>
 

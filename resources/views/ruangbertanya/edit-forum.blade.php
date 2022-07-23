@@ -63,7 +63,7 @@
                 <table>
                     <tr>
                         <td><h1 class="fw-bold text-xl p-3">&#128161;</h1></td>
-                        <td><h1 class="fw-bold text-xl p-3">Ruang bertanya {{$mapel->nama}}</h1></td>
+                        <td><h1 class="fw-bold text-xl p-3">Ruang Bertanya {{$mapel->nama}}</h1></td>
                     </tr>
                 </table>
                 <br>

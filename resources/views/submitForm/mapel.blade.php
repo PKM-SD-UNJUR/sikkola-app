@@ -138,19 +138,15 @@
 
 
 <div class="d-flex justify-content-end fixed-bottom">
-    <div class="forum-btn ">
-        <div class="disscussion-forum-button">
-            <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Ruang bertanya">
-                {{-- <div class="bg-white p-3 forum-desc">
-        <h5 class="tx-main fw-bold">Apakah kamu merasa bingung?</h5>
-        <small class="fw-bold text-secondary">&#128521; Mari tanyakan di ruang bertanya</small>
-      </div>&nbsp;&nbsp; --}}
-                <div class="btn-chat-area" id="btn-chat-area">
-                    <a class="btn-forum" href=""><img src="{{asset('/icon/chat.png')}}" alt=""></a>
-                </div>
-            </div>
-        </div>
+  <div class="forum-btn ">
+    <div class="disscussion-forum-button">
+      <div class="area-desc-btn d-flex" data-placement="left" data-toggle="tooltip" data-type="primary" title="Ruang bertanya">
+      <div class="btn-chat-area" id="btn-chat-area">
+        <a class="btn-forum"  href="/kelas/materi/forum/mapel/{{$mapel->id}}/question"><img src="{{asset('/icon/chat.png')}}" alt=""></a>
+      </div>
     </div>
+    </div>
+  </div>
 </div>
 
 @endsection

@@ -73,8 +73,8 @@
         <a class="fw-bold" href="/kelas/materi/{{$mapel->id}}/{{\Carbon\Carbon::now()->format('m')}}"><i class="fas fa-angle-double-left"></i> KEMBALI KE KELAS</a>
     </div>
     <div>
-        <h5 class="fw-bold">&#129303; Selamat datang di ruang bertanya di kelas {{$mapel->kelas->nama}}</h5>
-        <small>jangan sungkan untuk bertanya dan berikan jawaban terbaikmu</small>
+        <h5 class="fw-bold">&#129303; Selamat Datang di Ruang Bertanya {{$mapel->kelas->nama}}</h5>
+        <small>Jangan sungkan untuk bertanya dan berikan jawaban terbaikmu !</small>
     </div>
     <br>
     <div class="row p-4">

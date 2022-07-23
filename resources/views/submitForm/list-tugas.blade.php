@@ -52,15 +52,17 @@
                                     </button>
                                 </h2>
                                 <div id="deskripsi{{$m->id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body text-start">
                                         {!!$m->deskripsi!!}
                                     </div>
                                 </div>
+
+                                
                             </div>
                         </div>
                         @else
                         <label for="editor" class="mb-1 fw-bold container text-start">Deskripsi Tugas @error('deskripsi')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
-                        <textarea class="form-control ck-editor @error('deskripsi')is-invalid @enderror text-start" name="deskripsi" id="editor">{{ old('deskripsi',$m->deskripsi)}} </textarea>
+                        <textarea class="form-control ck-editor @error('deskripsi')is-invalid @enderror text-start" name="deskripsi" id="edit-x">{{ old('deskripsi',$m->deskripsi)}} </textarea>
                         @endif
                     </div>
 
@@ -142,3 +144,25 @@
         });
     });
 </script>
+
+<script>
+
+    ClassicEditor
+    .create( document.querySelector( '#edit-x' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
+</script>
+
+<script>
+
+    ClassicEditor
+    .create( document.querySelector( '#edit-w' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
+  </script>

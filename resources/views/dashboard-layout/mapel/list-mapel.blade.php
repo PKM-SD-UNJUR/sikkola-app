@@ -18,6 +18,8 @@
     </div>
     @endif
 
+    <h4 class="fw-bold text-secondary text-uppercase mt-5">Kelola Mata Pelajaran {{$kelas->nama}}</h4>
+
     <div class="mt-5">
         <div><a class="btn btn-primary fw-bold text-uppercase" href="/dashboard/mapel/{{$kelas->id}}/create"> + buat mata pelajaran </a></div>
     </div>
@@ -37,7 +39,7 @@
                 <td><a class="bar-item fw-bold" href="/dashboard/kelas/{{$m->id}}">{{$m->nama}}</a></td>
                 <td>{{$m->deskripsi}}</td>
                 <td>
-                    <img src="../../../mapel/{{$m->gambar}}" alt="" width="70">
+                    <img src="/mapel/{{$m->gambar}}" alt="" width="70">
                 </td>
                 <td>
                     <div class="d-flex">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\kelas;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -59,7 +60,7 @@ class dashboardKelasController extends Controller
 
         kelas::create($data);
 
-        return redirect('/dashboard/kelas')->with('success', 'Kelas berhasil dibuat');
+        return redirect('/dashboard/kelas')->with('success', 'Kelas Berhasil Dibuat!');
     }
 
     /**
@@ -119,7 +120,7 @@ class dashboardKelasController extends Controller
 
         kelas::where('id', $kela->id)->update($data);
 
-        return redirect('/dashboard/kelas')->with('success', 'Kelas berhasil diubah');
+        return redirect('/dashboard/kelas')->with('success', 'Kelas Berhasil Diubah!');
     }
 
     /**
@@ -130,11 +131,15 @@ class dashboardKelasController extends Controller
      */
     public function destroy(kelas $kela)
     {
-        if ($kela->image) {
-            Storage::delete($kela->image);
+        $user = User::where('kelas_id',$kela->id)->count();
+
+        if($user == 0) {
+            kelas::destroy($kela->id);
+            return redirect('/dashboard/kelas')->with('success', 'Kelas Berhasil Dihapus!');
+        } else {
+            return redirect('/dashboard/kelas')->with('warning', 'Kelas Gagal Dihapus, Kelas Sedang Digunakan!');
         }
 
-        kelas::destroy($kela->id);
-        return redirect('/dashboard/kelas')->with('success', 'Kelas berhasil dihapus');
+        
     }
 }
