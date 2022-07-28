@@ -32,21 +32,17 @@
                 </div>
 
 
+                @if(Auth::user()->role == 'siswa')
                 <div class="form-group mt-3">
                     <div class="d-flex justify-content-center">
-                        <label class="mx-4 w-10">Kelas&nbsp;&nbsp;</label>
-                        <select class="form-control custom-select mx-4" name="kelas" id="kelas">
-                            <option value="{{ Auth::user()->kelas_id }}">{{ Auth::user()->kelas->nama }} (Ganti Kelas)</option>
-
-                            @foreach($kelas as $kls)
-                            <option value="{{$kls->id}}">{{$kls->nama}}</option>
-                            @endforeach
-                        </select>
+                        <label class="mx-4 w-10">Kelas</label>
+                        <input type="text" name="kelas" class="form-control mx-4" value="{{ Auth::user()->kelas->nama }}" disabled>
                     </div>
                     @error('kelas')
                     <div class="alert-danger mt-1">{{$message}}</div>
                     @enderror
                 </div>
+                @endif
 
 
                 <div class="flex justify-content-center mt-5 ml-3">
