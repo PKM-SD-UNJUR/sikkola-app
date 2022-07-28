@@ -199,10 +199,9 @@
       <table class="table">
         <tr>
           <th>No</th>
-          <th>Status</th>
           <th>Nama</th>
-          <th>NIlai</th>
-          <th>action</th>
+          <th>Nilai</th>
+          <th>Aksi</th>
         </tr>
         @foreach ($allResult as $ar)
         <tr>
@@ -225,7 +224,7 @@
               <input class="w-100" name="nilai" type="text" value="{{number_format($ar->nilai,2)}}">
           </td>
           <td>
-            <button type="submit" class="badge border border-none border-primary bg-primary">EDIT</button>
+            <button type="submit" class="badge border border-none border-primary bg-primary">Ubah</button>
             </form>
           </td>
         </tr>
