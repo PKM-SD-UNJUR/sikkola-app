@@ -58,7 +58,7 @@ class dashboardMapelController extends Controller
     {
         $validasi = [
             'nama' => 'required|max:50|min:5',
-            'deskripsi' => 'required|max:255|min:5',
+            'deskripsi' => 'required|min:5',
             'gambar' => 'required',
             'kelas_id' => 'required'
         ];
@@ -116,7 +116,7 @@ class dashboardMapelController extends Controller
     {
         $validasi = [
             'nama' => 'required|max:50|min:5',
-            'deskripsi' => 'required|max:255|min:5',
+            'deskripsi' => 'required|min:5',
             'gambar' => 'nullable',
             'kelas_id' => 'nullable'
         ];
