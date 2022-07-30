@@ -19,24 +19,24 @@
       </div>
       <div>
         <label for="editor" class="mb-1 fw-bold container">Soal @error('soal')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="soal" id="editorSoal" cols="20" rows="30">{{ old('soal')}} </textarea><br>
+        <textarea class="form-control ck-editor" value="" name="soal" id="ckeditor" cols="20" rows="30">{{ old('soal')}} </textarea><br>
         <input type="file" class="form-control" value="" name="soalGambar">
       </div><br>
       <div>
         <label for="editor" class="mb-1 fw-bold container">Opsi 1 @error('opsi1')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi1" id="editor1" cols="20" rows="30">{{ old('opsi1')}} </textarea>
+        <textarea class="form-control ck-editor" value="" name="opsi1" id="ckeditor1" cols="20" rows="30">{{ old('opsi1')}} </textarea>
       </div><br>
       <div>
         <label for="editor" class="mb-1 fw-bold container">Opsi 2 @error('opsi2')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi2" id="editor2" cols="20" rows="30">{{ old('opsi2')}} </textarea>
+        <textarea class="form-control ck-editor" value="" name="opsi2" id="ckeditor2" cols="20" rows="30">{{ old('opsi2')}} </textarea>
       </div><br>
       <div>
         <label for="editor" class="mb-1 fw-bold container">Opsi 3 @error('opsi3')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi3" id="editor3" cols="20" rows="30">{{ old('opsi3')}} </textarea>
+        <textarea class="form-control ck-editor" value="" name="opsi3" id="ckeditor3" cols="20" rows="30">{{ old('opsi3')}} </textarea>
       </div><br>
       <div>
         <label for="editor" class="mb-1 fw-bold container">Opsi 4 @error('opsi4')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi4" id="editor4" cols="20" rows="30">{{ old('opsi4')}} </textarea>
+        <textarea class="form-control ck-editor" value="" name="opsi4" id="ckeditor4" cols="20" rows="30">{{ old('opsi4')}} </textarea>
       </div><br>
       <div>
         <label for="editor" class="mb-1 fw-bold container">Jawaban  @error('jawaban')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
@@ -51,7 +51,7 @@
       <div>
         <div>
           <label for="editor" class="mb-1 fw-bold container">Pembahasan @error('pembahasan')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-          <textarea class="form-control ck-editor" value="" name="pembahasan" id="pembahasan" cols="20" rows="30">{{ old('pembahasan')}} </textarea>
+          <textarea class="form-control ck-editor" value="" name="pembahasan" id="ckeditor" cols="20" rows="30">{{ old('pembahasan')}} </textarea>
         </div><br>
         <input type="file" value="" name="jawabanGambar" class="form-control">
       </div>
