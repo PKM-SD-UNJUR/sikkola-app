@@ -1,69 +1,143 @@
 @extends('template.main')
 
 @section('container')
-<div class="container card-kelas text-center p-2 px-5" style="" >
-    <h4>Tambah Soal</h4>
-    <small>{{$quiz->mapel->nama}} : {{$quiz->nama}}</small>
-<div class="container">
-<a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="/kelas/latihan/{{$quiz->id}}/{{\Carbon\Carbon::now()->format('m')}}"><i class="fas fa-angle-left"></i> Kembali</a>
-</div>
+
+<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+<link rel="stylesheet" href="/richtexteditor/runtime/richtexteditor_preview.css" />
+
+<div class="container card-kelas text-center p-2 px-5">
+  <h4>Tambah Soal</h4>
+  <small>{{$quiz->mapel->nama}} : {{$quiz->nama}}</small>
+  <div class="container">
+    <a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="{{ url()->previous() }}"><i class="fas fa-angle-left"></i> Kembali</a>
+  </div>
 </div>
 
-<div class="container formtambah mt-3 col-10 p-5 bg-light" style="max-width: 800px;">
+<div class="container formtambah mt-3 col-10 p-5 bg-light" style="max-width: 1000px;">
   <form action="/kelas/materi/forum/quiz/{{$quiz->id}}}/soal" enctype="multipart/form-data" method="post" class="form-group">
-      @csrf
-      <div>
-        <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
-        <input type="hidden" name="mapel_id" value="{{$quiz->mapel->id}}">
-        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-      </div>
-      <div>
-        <label for="editor" class="mb-1 fw-bold container">Soal @error('soal')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="soal" id="ckeditor" cols="20" rows="30">{{ old('soal')}} </textarea><br>
-        <input type="file" class="form-control" value="" name="soalGambar">
-      </div><br>
-      <div>
-        <label for="editor" class="mb-1 fw-bold container">Opsi 1 @error('opsi1')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi1" id="ckeditor1" cols="20" rows="30">{{ old('opsi1')}} </textarea>
-      </div><br>
-      <div>
-        <label for="editor" class="mb-1 fw-bold container">Opsi 2 @error('opsi2')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi2" id="ckeditor2" cols="20" rows="30">{{ old('opsi2')}} </textarea>
-      </div><br>
-      <div>
-        <label for="editor" class="mb-1 fw-bold container">Opsi 3 @error('opsi3')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi3" id="ckeditor3" cols="20" rows="30">{{ old('opsi3')}} </textarea>
-      </div><br>
-      <div>
-        <label for="editor" class="mb-1 fw-bold container">Opsi 4 @error('opsi4')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-        <textarea class="form-control ck-editor" value="" name="opsi4" id="ckeditor4" cols="20" rows="30">{{ old('opsi4')}} </textarea>
-      </div><br>
-      <div>
-        <label for="editor" class="mb-1 fw-bold container">Jawaban  @error('jawaban')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-       <select class="form-select" value="" name="jawaban" id="">
-          <option value="" selected>Pilih jawaban</option>
-          <option @if(old('jawaban') == 'a') selected @endif value="a">Opsi 1</option>
-          <option @if(old('jawaban') == 'b') selected @endif value="b">Opsi 2</option>
-          <option @if(old('jawaban') == 'c') selected @endif value="c">Opsi 3</option>
-          <option @if(old('jawaban') == 'd') selected @endif value="d">Opsi 4</option>
-       </select>
-      </div><br>
-      <div>
-        <div>
-          <label for="editor" class="mb-1 fw-bold container">Pembahasan @error('pembahasan')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i>  {{$message}}</span>@enderror</label>
-          <textarea class="form-control ck-editor" value="" name="pembahasan" id="ckeditor" cols="20" rows="30">{{ old('pembahasan')}} </textarea>
-        </div><br>
-        <input type="file" value="" name="jawabanGambar" class="form-control">
-      </div>
-      <br>
-      <div class="col-md-6 mt-3 ">
-        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah</button>
-        <a type="reset" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-angle-double-left"></i> Batal</a>
+    @csrf
+    <div>
+      <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
+      <input type="hidden" name="mapel_id" value="{{$quiz->mapel->id}}">
+      <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
     </div>
- 
+    <div>
+      <label for="editor" class="mb-1 fw-bold container">Soal @error('soal')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+
+      <input name="soal" id="inp_soal" type="hidden" />
+
+
+      <div id="div_editor1" class="richtexteditor" style="width: 800px;margin:10px">
+      </div>
+
+      <script>
+        var editor1 = new RichTextEditor(document.getElementById("div_editor1"));
+        editor1.attachEvent("change", function() {
+          document.getElementById("inp_soal").value = editor1.getHTMLCode();
+        });
+      </script>
+
+    </div><br>
+    <div>
+      <label for="editor" class="mb-1 fw-bold container">Opsi 1 @error('opsi1')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+
+      <input name="opsi1" id="inp_opsi1" type="hidden" />
+
+
+      <div id="div_editor2" class="richtexteditor" style="width: 800px;margin:10px">
+      </div>
+
+      <script>
+        var editor2 = new RichTextEditor(document.getElementById("div_editor2"));
+        editor2.attachEvent("change", function() {
+          document.getElementById("inp_opsi1").value = editor2.getHTMLCode();
+        });
+      </script>
+
+    </div><br>
+    <div>
+      <label for="editor" class="mb-1 fw-bold container">Opsi 2 @error('opsi2')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+      <input name="opsi2" id="inp_opsi2" type="hidden" />
+
+
+      <div id="div_editor3" class="richtexteditor" style="width: 800px;margin:10px">
+      </div>
+
+      <script>
+        var editor3 = new RichTextEditor(document.getElementById("div_editor3"));
+        editor3.attachEvent("change", function() {
+          document.getElementById("inp_opsi2").value = editor3.getHTMLCode();
+        });
+      </script>
+    </div><br>
+    <div>
+      <label for="editor" class="mb-1 fw-bold container">Opsi 3 @error('opsi3')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+      <input name="opsi3" id="inp_opsi3" type="hidden" />
+
+
+      <div id="div_editor4" class="richtexteditor" style="width: 800px;margin:10px">
+      </div>
+
+      <script>
+        var editor4 = new RichTextEditor(document.getElementById("div_editor4"));
+        editor4.attachEvent("change", function() {
+          document.getElementById("inp_opsi3").value = editor4.getHTMLCode();
+        });
+      </script>
+    </div><br>
+    <div>
+      <label for="editor" class="mb-1 fw-bold container">Opsi 4 @error('opsi4')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+      <input name="opsi4" id="inp_opsi4" type="hidden" />
+
+
+      <div id="div_editor5" class="richtexteditor" style="width: 800px;margin:10px">
+      </div>
+
+      <script>
+        var editor5 = new RichTextEditor(document.getElementById("div_editor5"));
+        editor5.attachEvent("change", function() {
+          document.getElementById("inp_opsi4").value = editor5.getHTMLCode();
+        });
+      </script>
+    </div><br>
+    <div>
+      <label for="editor" class="mb-1 fw-bold container">Jawaban @error('jawaban')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+      <select class="form-select" value="" name="jawaban" id="">
+        <option value="" selected>Pilih jawaban</option>
+        <option @if(old('jawaban')=='a' ) selected @endif value="a">Opsi 1</option>
+        <option @if(old('jawaban')=='b' ) selected @endif value="b">Opsi 2</option>
+        <option @if(old('jawaban')=='c' ) selected @endif value="c">Opsi 3</option>
+        <option @if(old('jawaban')=='d' ) selected @endif value="d">Opsi 4</option>
+      </select>
+    </div><br>
+    <div>
+      <div>
+        <label class="mb-1 fw-bold container">Pembahasan @error('pembahasan')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+
+        <input name="pembahasan" id="inp_pembahasan" type="hidden" />
+
+
+      <div id="div_editor6" class="richtexteditor" style="width: 800px;margin:10px">
+      </div>
+
+      <script>
+        var editor6 = new RichTextEditor(document.getElementById("div_editor6"));
+        editor6.attachEvent("change", function() {
+          document.getElementById("inp_pembahasan").value = editor6.getHTMLCode();
+        });
+      </script>
+      </div><br>
+    </div>
+    <br>
+    <div class="col-md-6 mt-3 ">
+      <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah</button>
+      <a type="reset" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-angle-double-left"></i> Batal</a>
+    </div>
+
   </form>
 </div>
 <br><br>
 
-@include('quiz/function/soal-js')
 @endsection
