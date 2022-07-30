@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\quiz;
 use App\Models\mapel;
 use App\Models\soal;
+use App\Models\jawabanQuiz;
 use Auth;
 use App\Models\quizResult;
 use Illuminate\Http\Request;
@@ -161,7 +162,15 @@ class quizController extends Controller
      */
     public function destroy(mapel $mapel, quiz $quiz)
     {
-        quiz::destroy($quiz->id);
-        return redirect("/kelas/materi/forum/mapel/$mapel->id/quiz")->with('success', 'Quiz berhasil dihapus');
+        
+
+        $jawaban = jawabanQuiz::where('quiz_id',$quiz->id)->count();
+
+        if($jawaban == 0) {
+            quiz::destroy($quiz->id);
+            return redirect("/kelas/materi/forum/mapel/$mapel->id/quiz")->with('success', 'Quiz berhasil dihapus');
+        } else {
+            return redirect("/kelas/materi/forum/mapel/$mapel->id/quiz")->with('warning', 'Quiz Gagal Dihapus, Quiz Sedang Digunakan!');
+        }
     }
 }

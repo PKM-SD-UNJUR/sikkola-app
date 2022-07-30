@@ -5,7 +5,7 @@
     <h4>Tambah Quiz</h4>
     <small>{{$mapel->kelas->nama}} : {{$mapel->nama}}</small>
 <div class="container">
-<a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="/kelas/latihan/{{$mapel->id}}/{{\Carbon\Carbon::now()->format('m')}}"><i class="fas fa-angle-left"></i> Kembali</a>
+<a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="{{ url()->previous() }}"><i class="fas fa-angle-left"></i> Kembali</a>
 </div>
 </div>
 
@@ -23,7 +23,7 @@
           <input id="nama" value="{{old('nama',$quiz->nama)}}" name="nama" class="form-control form-sm @error('nama') is-invalid @enderror" type="text" placeholder="Masukkan nama judul quiz disini...">
         </div>
           <div class="col-md-6 mt-2">
-              <label for="deadline" class="mb-1 fw-bold container">Deadline @error('deadline')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+              <label for="deadline" class="mb-1 fw-bold container">Batas Waktu @error('deadline')<span class="text-danger" style="font-weight: 10px;"><i class="fas fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
               <input id="deadline" value="{{old('deadline',$quiz->deadline)}}" name="deadline" class="form-control form-sm @error('deadline')is-invalid @enderror" type="datetime-local">
           </div>
           <div class="col-md-12 mt-3 mb-2">
@@ -32,7 +32,7 @@
           </div>
           <div class="col-md-6 mt-3 ">
               <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah</button>
-              <a type="reset" class="btn btn-secondary" href="back()"><i class="fas fa-angle-double-left"></i> Batal</a>
+              <a type="reset" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-angle-double-left"></i> Batal</a>
           </div>
         </div>
   </form>

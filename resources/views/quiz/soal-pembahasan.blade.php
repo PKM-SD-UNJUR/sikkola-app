@@ -209,7 +209,7 @@
             <br><br>
             
             @if($submit == 1)
-            <a href="/kelas/materi/forum/mapel/{{$quiz->mapel->id}}/quiz/{{$quiz->id}}" class="container text-uppercase btn btn-dark fw-bold"><i class="fas fa-angle-double-left"></i> kembali ke quiz</a>
+            <a href="/kelas/materi/forum/mapel/{{$quiz->mapel->id}}/quiz/{{$quiz->id}}" class="container text-uppercase btn btn-info fw-bold"><i class="fas fa-angle-double-left"></i> kembali ke quiz</a>
             @endif
           </div>
         </div>
@@ -247,7 +247,7 @@
                 </h4>
                 <div class="ms-auto">
                   @if ($soal->jawabanQuiz != null)
-                  <small class="fw-bold text-secondary">skor :
+                  <small class="fw-bold text-secondary">Nilai :
                     @if ($soal->jawabanQuiz !== '')
                     @foreach ($soal->jawabanQuiz as $jwb)
                       @if($jwb->user_id == Auth::user()->id && $soal->id == $jwb->soal_id)

@@ -60,8 +60,8 @@
       </div>
       <br>
       <div class="col-md-6 mt-3 ">
-        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah</button>
-        <a type="reset" class="btn btn-secondary" href="back()"><i class="fas fa-angle-double-left"></i> Batal</a>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Simpan</button>
+        <a type="reset" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-angle-double-left"></i> Batal</a>
     </div>
  
   </form>

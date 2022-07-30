@@ -21,8 +21,8 @@
         <a class="fw-bold" href="/kelas/materi/{{$mapel->id}}/{{\Carbon\Carbon::now()->format('m')}}"><i class="fas fa-angle-double-left"></i> KEMBALI KE KELAS</a>
     </div>
     <div>
-        <h5 class="fw-bold">&#129303; Selamat datang di quiz kelas {{$mapel->kelas->nama}}</h5>
-        <small>Ayo uji pemahanmu dengan mengerjakan quiz yang diberikan oleh guru</small>
+        <h5 class="fw-bold">&#129303; Selamat Datang di Quiz {{$mapel->kelas->nama}}</h5>
+        <small>Ayo uji pemahanmu dengan mengerjakan quiz yang diberikan oleh guru !</small>
     </div>
     <br>
     <div class="container bg-white main-page p-5">
