@@ -5,7 +5,7 @@
     <h4>Tambah Latihan</h4>
     <small>{{$mapel->kelas->nama}} : {{$mapel->nama}}</small>
     <div class="container">
-        <a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="/kelas/latihan/{{$mapel->id}}/{{\Carbon\Carbon::now()->format('m')}}"><i class="fas fa-angle-left"></i> Kembali</a>
+        <a class="btn btn-sm mt-3 btnkelas bg-transparent text-light" href="{{ url()->previous() }}"><i class="fas fa-angle-left"></i> Kembali</a>
     </div>
 </div>
 

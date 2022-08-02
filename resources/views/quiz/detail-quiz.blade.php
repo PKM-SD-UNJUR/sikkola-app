@@ -331,13 +331,13 @@
                   <p>A.&nbsp;{!!$s->opsi1!!}</p>
                 </div>
                 <div class="d-flex justify-content-start">
-                  <p>B.&nbsp;{!!$s->opsi1!!}</p>
+                  <p>B.&nbsp;{!!$s->opsi2!!}</p>
                 </div>
                 <div class="d-flex justify-content-start">
-                  <p>C.&nbsp;{!!$s->opsi1!!}</p>
+                  <p>C.&nbsp;{!!$s->opsi3!!}</p>
                 </div>
                 <div class="d-flex justify-content-start">
-                  <p>D.&nbsp;{!!$s->opsi1!!}</p>
+                  <p>D.&nbsp;{!!$s->opsi4!!}</p>
                 </div>
               </div>
             </div>
@@ -372,10 +372,13 @@
           </div>
         </td>
         @if (!$quiz->status)
-        <td>
-          <div class="py-3 manage-soal">
-            <a class="text-warning fw-bold" href="/kelas/materi/forum/quiz/{{$quiz->id}}/soal/{{$s->id}}/edit"><small>&#128394; UBAH</small></a>&nbsp;&nbsp;
-            <a class="text-danger fw-bold" data-bs-toggle="modal" data-bs-target="#soal{{$s->id}}"><small>&#128465; HAPUS</small></a>
+        <td class="mx-5">
+          <div class="d-flex manage-soal">
+            <i class="fas fa-edit text-warning"></i>
+            <a class="text-warning fw-bold mr-3 ml-1" href="/kelas/materi/forum/quiz/{{$quiz->id}}/soal/{{$s->id}}/edit"><small>UBAH</small></a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <i class="fas fa-trash-alt text-danger"></i>
+            <a class="text-danger fw-bold ml-3 mr-1" data-bs-toggle="modal" data-bs-target="#soal{{$s->id}}"><small>HAPUS</small></a>
           </div>
         </td>
         @endif

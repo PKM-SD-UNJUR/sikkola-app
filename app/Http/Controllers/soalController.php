@@ -134,12 +134,12 @@ class soalController extends Controller
     {
         
        $validasi = [
-            'soal' => 'required:min:3',
+            'soal' => 'required',
             'soalGambar' => 'nullable',
-            'opsi1' => 'required:min:3',
-            'opsi2' => 'required:min:3',
-            'opsi3' => 'required:min:3',
-            'opsi4' => 'required:min:3',
+            'opsi1' => 'required',
+            'opsi2' => 'required',
+            'opsi3' => 'required',
+            'opsi4' => 'required',
             'score' => 'nullable',
             'jawaban' => 'required',
             'jawabanGambar' => 'nullable',
@@ -234,12 +234,12 @@ class soalController extends Controller
     public function update(Request $request,quiz $quiz, soal $soal)
     {
         $validasi = [
-            'soal' => 'required:min:3',
+            'soal' => 'required',
             'soalGambar' => 'nullable',
-            'opsi1' => 'required:min:3',
-            'opsi2' => 'required:min:3',
-            'opsi3' => 'required:min:3',
-            'opsi4' => 'required:min:3',
+            'opsi1' => 'required',
+            'opsi2' => 'required',
+            'opsi3' => 'required',
+            'opsi4' => 'required',
             'score' => 'nullable',
             'jawaban' => 'required',
             'jawabanGambar' => 'nullable',
