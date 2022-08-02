@@ -313,6 +313,7 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
       <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
       <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
       <script>
         ClassicEditor
           .create(document.querySelector('#editor'))
@@ -324,6 +325,24 @@
           $("body").tooltip({
             selector: '[data-toggle=tooltip]'
           });
+        });
+      </script>
+      <script>
+        function html_table_to_excel(type)
+        {
+            var data = document.getElementById('proposal_data');
+      
+            var file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+      
+            XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+      
+            XLSX.writeFile(file, 'file.' + type);
+        }
+      
+        const export_button = document.getElementById('export_button');
+      
+        export_button.addEventListener('click', () =>  {
+            html_table_to_excel('xlsx');
         });
       </script>
 </body>

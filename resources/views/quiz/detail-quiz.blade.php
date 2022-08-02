@@ -121,7 +121,7 @@
     <h3 class="text-center fw-bold">Ringakasan Hasil Pengerjaan : </h3>
     <br>
     <div class="text-center d-flex justify-content-center">
-      <table class="table table-hover">
+      <table class="table table-hover" >
         <tr>
           <th>STATUS</th>
           <th>WAKTU SUBMIT</th>
@@ -196,6 +196,32 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+      <div class="py-1 d-flex justify-content-end"> 
+        <button class="btn btn-sm btn-success text-right text-uppercase fw-bold" id="export_button"><i class="far fa-file-excel" style="font-size:12px;"></i> print hasil</button>
+      </div>
+      <div class="d-">
+        <table id="proposal_data" class="d-none">
+            <tr>
+              <td colspan="3">
+              <b>Hasil quiz {{$quiz->nama}}</b>
+              </td>
+            </tr>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Nilai</th>
+            </tr>
+            @if ($allResult->count() > 0)
+            @foreach ($allResult as $ar)
+            <tr>
+              <td>{{$loop->iteration}}</td>
+              <td>{{$ar->user->name}}</td>
+              <td>{{number_format($ar->nilai,2)}}</td>
+            </tr>
+            @endforeach
+            @endif
+        </table>
+      </div>
       <table class="table">
         <tr>
           <th>No</th>
