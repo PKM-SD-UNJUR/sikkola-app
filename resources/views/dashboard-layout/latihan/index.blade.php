@@ -49,10 +49,8 @@
             <td><a href="{{$lth->link}}" target="_blank">{{$lth->link}}</a></td>
             <td>
                 <div class="d-flex">
-                    <a class="btn-outline-success btn btn-sm" href="#"><i class="fas fa-eye"></i></a>&nbsp;
 
-                    <a class="btn-outline-warning btn btn-sm" href="{{route('kelolaLatihan.edit',[$lth->id,'id'=>$mp->id])}}"><i class=" fas fa-edit"></i></a>&nbsp;
-                    
+                    <a class="btn-outline-warning btn btn-sm" href="{{route('kelolaLatihan.edit',[$lth->id,'id'=>$mp->id])}}"><i class=" fas fa-edit"></i></a>&nbsp;&nbsp;
 
                     <form action="{{route('kelolaLatihan.destroy',$lth->id)}}" method="post">
                         @method('delete')

@@ -43,8 +43,7 @@
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn-outline-success btn btn-sm" href=""><i class="fas fa-eye"></i></a>&nbsp;
-                        <a class="btn-outline-warning btn btn-sm" href="/dashboard/mapel/{{$m->id}}/edit"><i class="fas fa-edit"></i></a>&nbsp;
+                        <a class="btn-outline-warning btn btn-sm" href="/dashboard/mapel/{{$m->id}}/edit"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
                         <form action="/dashboard/mapel/{{$m->id}}" method="post">
                             @method('delete')
                             @csrf

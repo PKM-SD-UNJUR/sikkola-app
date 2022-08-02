@@ -42,10 +42,7 @@
                     <td class="text-center">{{$user->kelas->nama}}</td>
                     <td class="text-center">
                         <div class="d-flex justify-content-center">
-                            <a class="btn-outline-success btn btn-sm" href="#"><i class="fas fa-eye"></i></a>&nbsp;
-
-                            <a class="btn-outline-warning btn btn-sm" href="{{route('kelola.edit',[$user->id,'nama'=>$user->kelas->nama,'role'=>$user->role])}}"><i class=" fas fa-edit"></i></a>&nbsp;
-
+                            <a class="btn-outline-warning btn btn-sm" href="{{route('kelola.edit',[$user->id,'nama'=>$user->kelas->nama,'role'=>$user->role])}}"><i class=" fas fa-edit"></i></a>&nbsp;&nbsp;
 
                             <form action="{{route('kelola.destroy',[$user->id,$user->id,'role'=>$user->role,'kelasID'=>$user->kelas_id])}}" method="post">
                                 @method('delete')

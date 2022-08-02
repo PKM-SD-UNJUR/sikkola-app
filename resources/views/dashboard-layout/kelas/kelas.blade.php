@@ -42,8 +42,7 @@
         </td>
         <td>
             <div class="d-flex">
-                <a class="btn-outline-success btn btn-sm" href=""><i class="fas fa-eye"></i></a>&nbsp;
-                <a class="btn-outline-warning btn btn-sm" href="/dashboard/kelas/{{$k->id}}/edit"><i class="fas fa-edit"></i></a>&nbsp;
+                <a class="btn-outline-warning btn btn-sm" href="/dashboard/kelas/{{$k->id}}/edit"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
                 <form action="/dashboard/kelas/{{$k->id}}" method="post">
                     @method('delete')
                     @csrf
