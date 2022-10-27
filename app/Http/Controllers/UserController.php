@@ -74,6 +74,7 @@ class UserController extends Controller
         $gurus = user::where('role', 'guru')->get();
         $kelas = kelas::all();
         return view('dashboard-layout.pengguna.index', compact('users', 'kelas','gurus'), ['title' => 'pengguna', 'subtitle' => $request->nama]);
+        
     }
 
     /**
