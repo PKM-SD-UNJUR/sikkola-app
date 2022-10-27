@@ -70,9 +70,10 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = user::where('kelas_id', $request->id)->where('role', $request->role)->get();
+        $users = user::where('kelas_id', $request->id)->where('role', 'siswa')->get();
+        $gurus = user::where('role', 'guru')->get();
         $kelas = kelas::all();
-        return view('dashboard-layout.pengguna.index', compact('users', 'kelas'), ['title' => 'pengguna', 'subtitle' => $request->nama]);
+        return view('dashboard-layout.pengguna.index', compact('users', 'kelas','gurus'), ['title' => 'pengguna', 'subtitle' => $request->nama]);
     }
 
     /**
